@@ -13,6 +13,9 @@
       </p>
       <Btn name="Узнать подробнее" />
     </div>
+    <div>
+      <NuxtImg src="/images/countries.png" alt="countries" />
+    </div>
   </div>
 </template>
 
