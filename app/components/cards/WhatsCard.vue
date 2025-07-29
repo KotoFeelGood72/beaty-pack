@@ -1,27 +1,31 @@
 <template>
-  <div class="whats-card">
-    <div class="whats-card-image">
-      <NuxtImg
-        :src="image"
-        alt="Банк Точка - подарочный пакет"
-        class="whats-card-img"
-        loading="lazy"
-        format="webp"
-      />
+  <NuxtLink :to="`/cases/${item.id}`">
+    <div class="whats-card">
+      <div
+        class="whats-card-image w-full h-full max-h-[252px] rounded-card overflow-hidden"
+      >
+        <NuxtImg
+          :src="item.image"
+          :alt="item.title"
+          loading="lazy"
+          format="webp"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div class="whats-card-content space-y-4 px-5 py-6">
+        <h3 class="whats-card-title text-headline-5 font-semibold font-onest">
+          {{ item.title }}
+        </h3>
+        <p class="whats-card-description">
+          {{ item.description }}
+        </p>
+      </div>
     </div>
-    <div class="whats-card-content">
-      <h3 class="whats-card-title">{{ title }}</h3>
-      <p class="whats-card-description">
-        {{ description }}
-      </p>
-    </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{
-  title: string;
-  description: string;
-  image: string;
+  item: any;
 }>();
 </script>
