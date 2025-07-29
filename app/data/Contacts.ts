@@ -14,24 +14,6 @@ export const contacts = [
     info: [{ label: "Пн-Пт 9:00-18:00 (МСК+2)" }],
   },
   {
-    title: "Электронная почта",
-    info: [
-      {
-        label: "zakaz@beauty-pack.ru",
-        value: "mailto:zakaz@beauty-pack.ru",
-      },
-    ],
-  },
-  {
-    title: "Адрес компании",
-    info: [
-      {
-        label:
-          "620066, Свердловская обл., г. Екатеринбург, ул. Народной воли, д. 65, оф. 804",
-      },
-    ],
-  },
-  {
     title: "Наши реквизиты",
     organization: [
       {
@@ -46,5 +28,23 @@ export const contacts = [
       },
     ],
     requisites: true,
+  },
+  {
+    title: "Адрес компании",
+    info: [
+      {
+        label:
+          "620066, Свердловская обл., г. Екатеринбург, ул. Народной воли, д. 65, оф. 804",
+      },
+    ],
+  },
+  {
+    title: "Электронная почта",
+    info: [
+      {
+        label: "zakaz@beauty-pack.ru",
+        value: "mailto:zakaz@beauty-pack.ru",
+      },
+    ],
   },
 ];
