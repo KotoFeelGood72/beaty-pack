@@ -1,7 +1,7 @@
 export const navigation = [
   { label: "Каталог", to: "/shop", submenu: true },
   { label: "О компании", to: "/about", submenu: true },
-  { label: "Портфолио", to: "/portfolio", submenu: true },
+  { label: "Портфолио", to: "/works", submenu: true },
   { label: "Кейсы", to: "/cases", submenu: true },
   { label: "Отзывы", to: "/reviews", submenu: true },
   { label: "Блог", to: "/blog", submenu: true },
@@ -127,7 +127,7 @@ export const submenu = [
 export const aboutSubmenu = [
   { label: "О нас", to: "/about" },
   { label: "Кейсы", to: "/cases" },
-  { label: "Портфолио", to: "/portfolio" },
+  { label: "Портфолио", to: "/works" },
   { label: "Печать", to: "/printing" },
   { label: "Отзывы", to: "/reviews" },
   { label: "Реквизиты", to: "/requisites" },
