@@ -1,29 +1,37 @@
 <template>
-  <div class="bg-brown-800 rounded-lg p-8 flex justify-between items-center">
-    <!-- Левая часть с основным текстом -->
-    <div class="text-white">
-      <h2 class="text-3xl font-bold mb-2">
-        Поможем подобрать оптимальные решения для вашего бизнеса
-      </h2>
-    </div>
-
-    <!-- Правая часть с описанием и кнопкой -->
-    <div class="text-gray-300 max-w-md">
-      <p class="mb-4 text-sm">
-        Наш менеджер свяжется с вами и подскажет, какие продукты помогут решить ваши
-        задачи
-      </p>
-      <Btn name="Отправить запрос" />
+  <div class="container">
+    <div
+      class="flex justify-start gap-[118px] p-[57px] rounded-2xl"
+      :class="{ 'bg-brown': isColor }"
+    >
+      <div class="min-w-[464px]">
+        <h2 class="text-headline-2 font-semibold" :class="{ 'text-white': isColor }">
+          {{ title }}
+        </h2>
+      </div>
+      <div class="space-y-6">
+        <p class="text-lightGreyBlue" :class="{ 'text-white': isColor }">
+          {{ description }}
+        </p>
+        <div>
+          <Btn
+            :name="buttonText"
+            :theme="isColor ? 'light' : 'brown'"
+            class="inline-flex"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import Btn from "~/components/buttons/Btn.vue";
-</script>
 
-<style scoped>
-.bg-brown-800 {
-  background-color: #92400e;
-}
-</style>
+const props = defineProps<{
+  title: string;
+  description: string;
+  buttonText: string;
+  isColor: boolean;
+}>();
+</script>

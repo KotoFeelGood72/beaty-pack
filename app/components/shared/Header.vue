@@ -1,7 +1,7 @@
 <template>
   <header class="fixed top-0 left-0 right-0 z-50">
     <div
-      class="container flex items-center justify-between py-4 header-shadow rounded-b-[20px] gap-6"
+      class="container flex items-center justify-between py-4 header-shadow rounded-b-[20px] gap-6 bg-white"
     >
       <div class="logo flex-grow">
         <NuxtLink to="/" class="flex items-center justify-start p-2">

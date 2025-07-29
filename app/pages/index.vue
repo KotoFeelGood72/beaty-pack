@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import HeroBlocks from "~/components/blocks/HeroBlocks.vue";
+import HeadBlocks from "@/components/blocks/HeadBlocks.vue";
 </script>
 
 <style scoped></style>
