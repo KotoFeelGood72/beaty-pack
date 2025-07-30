@@ -1,0 +1,120 @@
+{
+  "Vue Component Template": {
+    "prefix": "vv",
+    "body": [
+      "<template>",
+      "  <div class=\"${1:component-name}\">",
+      "    $2",
+      "  </div>",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "$3",
+      "</script>",
+      "",
+      "<style scoped>",
+      "$4",
+      "</style>"
+    ],
+    "description": "Vue 3 Composition API component template with TypeScript"
+  },
+  "Vue Component with Props": {
+    "prefix": "vvp",
+    "body": [
+      "<template>",
+      "  <div class=\"${1:component-name}\">",
+      "    $2",
+      "  </div>",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "const props = defineProps<{",
+      "  ${3:propName}: ${4:string};",
+      "}>();",
+      "",
+      "$5",
+      "</script>",
+      "",
+      "<style scoped>",
+      "$6",
+      "</style>"
+    ],
+    "description": "Vue 3 component with TypeScript props"
+  },
+  "Vue Component with Emits": {
+    "prefix": "vve",
+    "body": [
+      "<template>",
+      "  <div class=\"${1:component-name}\">",
+      "    $2",
+      "  </div>",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "const emit = defineEmits<{",
+      "  ${3:eventName}: [${4:payload}];",
+      "}>();",
+      "",
+      "$5",
+      "</script>",
+      "",
+      "<style scoped>",
+      "$6",
+      "</style>"
+    ],
+    "description": "Vue 3 component with TypeScript emits"
+  },
+  "Vue Component with Props and Emits": {
+    "prefix": "vvpe",
+    "body": [
+      "<template>",
+      "  <div class=\"${1:component-name}\">",
+      "    $2",
+      "  </div>",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "const props = defineProps<{",
+      "  ${3:propName}: ${4:string};",
+      "}>();",
+      "",
+      "const emit = defineEmits<{",
+      "  ${5:eventName}: [${6:payload}];",
+      "}>();",
+      "",
+      "$7",
+      "</script>",
+      "",
+      "<style scoped>",
+      "$8",
+      "</style>"
+    ],
+    "description": "Vue 3 component with TypeScript props and emits"
+  },
+  "Vue NuxtImg Component": {
+    "prefix": "vimg",
+    "body": [
+      "<NuxtImg",
+      "  :src=\"${1:imagePath}\"",
+      "  :alt=\"${2:altText}\"",
+      "  loading=\"lazy\"",
+      "  format=\"webp\"",
+      "  class=\"${3:w-full h-full object-cover}\"",
+      "/>"
+    ],
+    "description": "NuxtImg component with common attributes"
+  },
+  "Vue Tailwind Card": {
+    "prefix": "vcard",
+    "body": [
+      "<div class=\"bg-white rounded-card shadow-sm hover:shadow-md transition-shadow duration-300 p-6\">",
+      "  <div class=\"space-y-4\">",
+      "    <h3 class=\"text-headline-5 font-semibold font-onest text-dark\">${1:Card Title}</h3>",
+      "    <p class=\"text-body-2 text-lightGreyBlue\">${2:Card description}</p>",
+      "    $3",
+      "  </div>",
+      "</div>"
+    ],
+    "description": "Tailwind CSS card component with project styling"
+  }
+} 
