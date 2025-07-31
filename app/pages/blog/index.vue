@@ -1,19 +1,26 @@
 <template>
-  <div class="container">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-11 mb-11">
-      <ArticleCard v-for="post in paginatedPosts" :key="post.id" :post="post" />
-    </div>
-    <Pagination
-      :total-records="posts.length"
-      :current-page="currentPage"
-      @page-change="handlePageChange"
+  <div>
+    <PageHead
+      :breadcrumbs="[{ label: 'Главная', to: '/' }, { label: 'Блог' }]"
+      title="Блог"
     />
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-11 mb-11">
+        <ArticleCard v-for="post in paginatedPosts" :key="post.id" :post="post" />
+      </div>
+      <Pagination
+        :total-records="posts.length"
+        :current-page="currentPage"
+        @page-change="handlePageChange"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import ArticleCard from "~/components/cards/ArticleCard.vue";
 import Pagination from "~/components/shared/Pagination.vue";
+import PageHead from "~/components/shared/PageHead.vue";
 import { posts } from "~/data/Posts";
 
 // Состояние пагинации

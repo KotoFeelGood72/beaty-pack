@@ -56,3 +56,7 @@ const goToPage = (page: number) => {
   }
 };
 </script>
+
+<style scoped>
+/* Стили для пагинации */
+</style>

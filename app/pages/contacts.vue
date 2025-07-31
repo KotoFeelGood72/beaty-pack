@@ -1,21 +1,28 @@
 <template>
-  <div class="container">
-    <div class="contact-grid gap-5 mb-10">
-      <ContactsCard
-        :card="contact"
-        v-for="(contact, index) in contacts"
-        :key="contact.title"
-        :class="getCardClasses(index)"
-      />
-    </div>
-    <div class="w-full h-[500px] rounded-card overflow-hidden">
-      <NuxtImg src="/images/map.png" alt="map" class="w-full h-full object-cover" />
+  <div>
+    <PageHead
+      :breadcrumbs="[{ label: 'Главная', to: '/' }, { label: 'Контакты' }]"
+      title="Контакты"
+    />
+    <div class="container">
+      <div class="contact-grid gap-5 mb-10">
+        <ContactsCard
+          :card="contact"
+          v-for="(contact, index) in contacts"
+          :key="contact.title"
+          :class="getCardClasses(index)"
+        />
+      </div>
+      <div class="w-full h-[500px] rounded-card overflow-hidden">
+        <NuxtImg src="/images/map.png" alt="map" class="w-full h-full object-cover" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import ContactsCard from "@/components/cards/ContactsCard.vue";
+import PageHead from "~/components/shared/PageHead.vue";
 import { contacts } from "@/data/Contacts";
 
 const getCardClasses = (index: number) => {

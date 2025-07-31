@@ -22,7 +22,7 @@ module.exports = {
                 center: true,
                 padding: '16px',
                 screens: {
-                    DEFAULT: '1240px',
+                    DEFAULT: '1272px',
                     sm: '640px',
                     md: '768px',
                     lg: '1024px',

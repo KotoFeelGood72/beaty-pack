@@ -1,5 +1,0 @@
-<template>Happy Cat</template>
-
-<script setup lang="ts"></script>
-
-<style scoped></style>

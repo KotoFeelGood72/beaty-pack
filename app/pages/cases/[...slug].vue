@@ -15,7 +15,11 @@
     <div class="container">
       <WorksGrid />
     </div>
-    <WhatsSliders />
+    <WhatsSliders :items="cases">
+      <template #card="{ item }">
+        <WhatsCard :item="item" />
+      </template>
+    </WhatsSliders>
   </div>
 </template>
 
@@ -24,6 +28,8 @@ import HeadBlocks from "@/components/blocks/HeadBlocks.vue";
 import GlobalForm from "~/components/shared/GlobalForm.vue";
 import WorksGrid from "~/components/blocks/WorksGrid.vue";
 import WhatsSliders from "~/components/blocks/WhatsSliders.vue";
+import { cases } from "~/data/Cases";
+import WhatsCard from "~/components/cards/WhatsCard.vue";
 
 const backgroundImage = "/images/head/head-suv-desktop.jpg";
 const backgroundAlt = "Background image";
