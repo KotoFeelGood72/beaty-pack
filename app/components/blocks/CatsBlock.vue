@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2 v-if="title">{{ title }}</h2>
+    <h2 v-if="title" class="text-headline-2 font-semibold mb-10">{{ title }}</h2>
     <div class="flex flex-wrap gap-x-2 gap-y-8 justify-between">
       <ShopCard v-for="shop in shops" :key="shop.id" :item="shop" />
     </div>
