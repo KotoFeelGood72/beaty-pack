@@ -1,9 +1,11 @@
 <template>
-  <div class="hero-slider">
+  <div
+    class="hero-slider bg-gradient-to-r from-[#d8d6e1] to-[#a0a8c2] rounded-bl-3xl rounded-br-3xl -mt-[180px] relative"
+  >
     <Swiper
       :modules="[Pagination]"
       :pagination="{
-        el: '.swiper-pagination',
+        el: '.hero-swiper-pagination',
         type: 'progressbar',
         clickable: true,
       }"
@@ -15,19 +17,29 @@
       class="hero-swiper"
     >
       <SwiperSlide v-for="item in 5" :key="'item' + item">
-        <div class="hero-slide">
-          <div class="hero-content">
-            <h2>Подарочные коробки с вашим логотипом</h2>
-            <p>Бесплатный дизайн макет при заказе на сумму от 30 000 руб.</p>
-            <Btn name="Узнать подробнее" />
-          </div>
-          <div class="hero-image">
-            <NuxtImg src="/images/hero.png" alt="hero" />
+        <div class="container relative">
+          <div
+            class="hero-slide flex items-center gap-5 justify-between pt-[239px] pb-[150px]"
+          >
+            <div class="hero-content flex flex-col gap-y-4 max-w-[426px]">
+              <h2 class="text-headline-1 font-semibold">
+                Подарочные коробки с вашим логотипом
+              </h2>
+              <p class="text-lightGreyBlue">
+                Бесплатный дизайн макет при заказе на сумму от 30 000 руб.
+              </p>
+              <Btn name="Узнать подробнее" class="mt-2 inline-flex w-fit" />
+            </div>
+            <div class="hero-image">
+              <NuxtImg src="/images/hero.png" alt="hero" class="w-full h-full" />
+            </div>
           </div>
         </div>
       </SwiperSlide>
     </Swiper>
-    <div class="swiper-pagination"></div>
+    <div class="absolute left-1/2 -translate-x-1/2 max-w-[340px] w-full z-10 bottom-16">
+      <div class="hero-swiper-pagination w-full"></div>
+    </div>
   </div>
 </template>
 
@@ -41,28 +53,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 </script>
 
-<style scoped>
-/* Кастомные стили для прогресс-бара */
-:deep(.swiper-pagination) {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.3);
-  z-index: 10;
+<style>
+.hero-swiper-pagination.swiper-pagination-progressbar {
+  background: rgba(255, 255, 255, 0.24);
+  border-radius: 10px;
 }
 
-:deep(.swiper-pagination-progressbar) {
-  background: #fff;
-  height: 100%;
-  border-radius: 0;
-}
-
-:deep(.swiper-pagination-progressbar-fill) {
-  background: #fff;
-  height: 100%;
-  border-radius: 0;
-  transition: width 0.3s ease;
+.hero-swiper-pagination .swiper-pagination-progressbar-fill {
+  border-radius: 10px;
+  background: #fff !important;
 }
 </style>
