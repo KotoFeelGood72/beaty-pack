@@ -1,10 +1,24 @@
 <template>
   <div>
     <PageHead
-      :breadcrumbs="[{ label: 'Главная', to: '/' }, { label: 'Каталог' }]"
-      title="Каталог"
+      :breadcrumbs="[
+        { label: 'Главная', to: '/' },
+        {
+          label: 'Каталог',
+          children: [
+            { label: 'Полиграфия', to: '/shop' },
+            { label: 'Баннеры', to: '/shop/banners' },
+            { label: 'Буклеты', to: '/shop/booklets' },
+            { label: 'Визитки', to: '/shop/visitors' },
+            { label: 'Буклеты', to: '/shop/booklets' },
+            { label: 'Буклеты', to: '/shop/booklets' },
+          ],
+        },
+        { label: 'Полиграфическая продукция' },
+      ]"
+      title="Полиграфическая продукция"
     />
-    <CatsBlock />
+    <CatsBlock class="mb-[100px]" />
     <WhatsSliders :items="cases">
       <template #card="{ item }">
         <WhatsCard :item="item" />
