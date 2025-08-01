@@ -6,7 +6,7 @@
     />
     <div class="container">
       <div class="grid grid-cols-3 gap-y-8 gap-x-5">
-        <WhatsCard v-for="item in cases" :key="item.id" :item="item" />
+        <WhatsCard v-for="(item, idx) in cases" :key="item.id" :item="item" :idx="idx" />
       </div>
     </div>
   </div>

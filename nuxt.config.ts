@@ -6,5 +6,11 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxtjs/tailwindcss",
     "nuxt-swiper",
+    [
+      "@pinia/nuxt",
+      {
+        storesDirs: ["./app/store/**"],
+      },
+    ],
   ],
 });

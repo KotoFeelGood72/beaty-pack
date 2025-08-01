@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="`/cases/${item.id}`">
+  <NuxtLink :to="`/cases/${item.id}`" @click="handleClick">
     <div class="whats-card bg-white rounded-card">
       <div
         class="whats-card-image w-full h-full max-h-[252px] rounded-card overflow-hidden"
@@ -25,7 +25,18 @@
 </template>
 
 <script setup lang="ts">
+import { useStoriesStore } from "@/store/useStoriesStore";
+
 const props = defineProps<{
   item: any;
+  idx?: number;
 }>();
+
+const storiesStore = useStoriesStore();
+
+const handleClick = () => {
+  if (props.idx !== undefined) {
+    storiesStore.setCurrentStory(props.item, props.idx);
+  }
+};
 </script>
