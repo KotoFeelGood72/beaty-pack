@@ -1,11 +1,9 @@
 <template>
-  <div
-    class="bg-white rounded-lg p-3 min-w-[264px] z-10 shadow-md"
-    :class="{
+  <div class="bg-white rounded-lg p-3 min-w-[264px] z-10 shadow-md">
+    <!-- :class="{
       'opacity-100 pointer-events-auto': isActive,
       'opacity-0 pointer-events-none': !isActive,
-    }"
-  >
+    }" -->
     <ul class="flex flex-col gap-4">
       <li
         v-for="(item, idx) in items"
@@ -31,8 +29,8 @@ import { ref, defineProps } from "vue";
 import { NuxtLink } from "#components";
 
 const props = defineProps<{
-  isActive: boolean;
-  items: Array<{ label: string; to?: string }>;
+  // isActive: boolean;
+  items: any;
 }>();
 
 const activeIndex = ref<number | null>(null);

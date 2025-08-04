@@ -2,7 +2,7 @@
   <div>
     <HeroBlocks />
     <CircleSlider class="mb-20" />
-    <Transition name="fade">
+    <Transition name="modal">
       <StorieslSliderModal v-if="isOpen" />
     </Transition>
     <CatsBlock class="mb-[100px]" title="Популярные продукты" />
@@ -49,4 +49,30 @@ const { currentStory } = useStoriesStoreRefs();
 const isOpen = computed(() => currentStory.value?.active);
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Анимация появления/исчезновения модального окна */
+.modal-enter-active,
+.modal-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-enter-from {
+  opacity: 0;
+}
+
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .bg-white,
+.modal-leave-to .bg-white {
+  transform: scale(0.9) translateY(20px);
+  opacity: 0;
+}
+
+.modal-enter-to .bg-white,
+.modal-leave-from .bg-white {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+</style>

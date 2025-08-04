@@ -15,7 +15,7 @@
           class="flex-1 h-1 bg-white/30 rounded-full overflow-hidden"
         >
           <div
-            class="h-full bg-white rounded-full transition-all duration-100 ease-linear"
+            class="h-full bg-white rounded-full transition-all duration-100 ease-linear progress-bar"
             :style="{ width: getProgressWidth(item.id) + '%' }"
           ></div>
         </div>
@@ -36,7 +36,11 @@
       >
         <SwiperSlide v-for="item in stories" :key="'item' + item">
           <div class="stories-item relative h-[700px]">
-            <NuxtImg :src="item.img" alt="story" class="w-full h-full object-cover" />
+            <NuxtImg
+              :src="item.img"
+              alt="story"
+              class="w-full h-full object-cover story-image"
+            />
 
             <!-- Невидимые кнопки навигации -->
             <div
@@ -51,11 +55,17 @@
             <div
               class="stories-item-content absolute bottom-0 left-0 w-full flex flex-col gap-4 text-white p-4 z-20"
             >
-              <h3 class="stories-item-title text-headline-3 font-semibold">
+              <h3
+                class="stories-item-title text-headline-3 font-semibold animate-slide-up"
+              >
                 {{ item.title }}
               </h3>
-              <p class="stories-item-description">{{ item.description }}</p>
-              <Btn name="Перейти в каталог" theme="light" />
+              <p class="stories-item-description animate-slide-up-delay">
+                {{ item.description }}
+              </p>
+              <div class="animate-slide-up-delay-2">
+                <Btn name="Перейти в каталог" theme="light" />
+              </div>
             </div>
           </div>
         </SwiperSlide>
@@ -115,10 +125,10 @@ const onSwiper = (swiper: any) => {
   console.log("Swiper initialized");
   console.log("Swiper instance:", swiper);
   console.log("Initial currentSlideIndex:", currentSlideIndex.value);
-  
+
   // Сохраняем Swiper инстанс
   swiperInstanceRef.value = swiper;
-  
+
   // Принудительно переходим на нужный слайд после инициализации
   if (currentSlideIndex.value > 0) {
     setTimeout(() => {
@@ -315,5 +325,31 @@ watch(progress, (newProgress) => {
 /* Отключаем перетаскивание Swiper */
 .hero-swiper {
   touch-action: none;
+}
+
+/* Пульсирующая анимация для активного прогресс-бара */
+.progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 </style>
