@@ -93,6 +93,10 @@ if (currentStory.value?.id) {
     currentSlideIndex.value = storyIndex;
     console.log("Found story index by ID:", storyIndex);
   }
+} else if (currentStory.value?.num !== undefined) {
+  // Если есть номер слайда, используем его
+  currentSlideIndex.value = currentStory.value.num;
+  console.log("Using story num:", currentStory.value.num);
 }
 
 console.log("Initial currentSlideIndex:", currentSlideIndex.value);
@@ -110,10 +114,23 @@ const onSwiper = (swiper: any) => {
   // Swiper инициализирован
   console.log("Swiper initialized");
   console.log("Swiper instance:", swiper);
+  console.log("Initial currentSlideIndex:", currentSlideIndex.value);
+  
   // Сохраняем Swiper инстанс
   swiperInstanceRef.value = swiper;
-  // Принудительно обновляем Swiper
-  swiperInstanceRef.value.update();
+  
+  // Принудительно переходим на нужный слайд после инициализации
+  if (currentSlideIndex.value > 0) {
+    setTimeout(() => {
+      swiper.slideTo(currentSlideIndex.value, 0, false);
+      console.log("Forced slide to index:", currentSlideIndex.value);
+      // Обновляем currentStory после принудительного перехода
+      const newStory = stories[currentSlideIndex.value];
+      if (newStory) {
+        storiesStore.setCurrentStory(newStory, currentSlideIndex.value, 0);
+      }
+    }, 50);
+  }
 
   // Запускаем прогресс после инициализации Swiper
   setTimeout(() => {
@@ -123,18 +140,22 @@ const onSwiper = (swiper: any) => {
 
 const handleSlideChange = (swiper: any) => {
   console.log("Slide changed to:", swiper.realIndex);
-  currentSlideIndex.value = swiper.realIndex;
-  progress.value = 0;
 
-  // Получаем новый слайд из массива stories
-  const newStory = stories[swiper.realIndex];
+  // Проверяем, что индекс действительно изменился
+  if (currentSlideIndex.value !== swiper.realIndex) {
+    currentSlideIndex.value = swiper.realIndex;
+    progress.value = 0;
 
-  // Обновляем currentStory с информацией о новом слайде
-  if (newStory) {
-    storiesStore.setCurrentStory(newStory, swiper.realIndex, 0);
+    // Получаем новый слайд из массива stories
+    const newStory = stories[swiper.realIndex];
+
+    // Обновляем currentStory с информацией о новом слайде
+    if (newStory) {
+      storiesStore.setCurrentStory(newStory, swiper.realIndex, 0);
+    }
+
+    startProgress();
   }
-
-  startProgress();
 };
 
 const startProgress = () => {
@@ -181,6 +202,7 @@ const nextSlide = () => {
       }
       console.log("Moving to next slide");
       swiper.slideNext();
+      // Обновление currentStory происходит в handleSlideChange
     }
   } else {
     console.log("Swiper instance not available");
@@ -198,16 +220,10 @@ const goToPreviousSlide = () => {
         interval.value = null;
       }
 
+      // Переходим к предыдущему слайду
       swiper.slidePrev();
 
-      // Обновляем currentStory после переключения слайда
-      setTimeout(() => {
-        const newIndex = swiper.activeIndex;
-        const newStory = stories[newIndex];
-        if (newStory) {
-          storiesStore.setCurrentStory(newStory, newIndex, 0);
-        }
-      }, 100);
+      // Обновление currentStory теперь происходит в handleSlideChange
     }
   }
 };
@@ -223,16 +239,10 @@ const goToNextSlide = () => {
         interval.value = null;
       }
 
+      // Переходим к следующему слайду
       swiper.slideNext();
 
-      // Обновляем currentStory после переключения слайда
-      setTimeout(() => {
-        const newIndex = swiper.activeIndex;
-        const newStory = stories[newIndex];
-        if (newStory) {
-          storiesStore.setCurrentStory(newStory, newIndex, 0);
-        }
-      }, 100);
+      // Обновление currentStory теперь происходит в handleSlideChange
     }
   }
 };

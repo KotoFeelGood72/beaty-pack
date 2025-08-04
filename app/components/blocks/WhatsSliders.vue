@@ -6,29 +6,34 @@
         <div class="flex gap-4">
           <div
             class="w-12 h-12 bg-brown rounded-full cursor-pointer flex items-center justify-center swiper-button-prev"
+            :class="`${uniqueId}-button-prev`"
           >
             <IconArrowSlider />
           </div>
           <div
             class="w-12 h-12 bg-brown rounded-full cursor-pointer flex items-center justify-center swiper-button-next"
+            :class="`${uniqueId}-button-next`"
           >
             <IconArrowSlider class="rotate-180" />
           </div>
         </div>
-        <div class="swiper-pagination w-full !bottom-0"></div>
+        <div
+          class="swiper-pagination w-full !bottom-0"
+          :class="`${uniqueId}-pagination`"
+        ></div>
       </div>
       <Swiper
         class="pt-8"
         :modules="[Navigation, Pagination]"
         :space-between="20"
         :pagination="{
-          el: '.swiper-pagination',
+          el: `.${uniqueId}-pagination`,
           type: 'progressbar',
           clickable: true,
         }"
         :navigation="{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: `.${uniqueId}-button-next`,
+          prevEl: `.${uniqueId}-button-prev`,
         }"
         :breakpoints="{
           768: {
@@ -54,12 +59,16 @@ import "swiper/css/pagination";
 interface Props {
   title?: string;
   items: any[];
+  className?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   title: "С кем мы работаем",
+  className: "whats",
   items: () => [],
 });
+
+const uniqueId = `${props.className}-${Math.random().toString(36).substr(2, 9)}`;
 </script>
 
 <style scoped>

@@ -34,7 +34,7 @@
         </li>
       </ul>
     </nav>
-    <h1 class="text-headline-1 font-semibold">{{ title }}</h1>
+    <h1 class="text-headline-1 font-semibold" v-if="title">{{ title }}</h1>
   </div>
 </template>
 
@@ -48,7 +48,7 @@ defineProps<{
     to?: string;
     children?: Array<{ label: string; to: string }>;
   }>;
-  title: string;
+  title?: string;
 }>();
 
 const dropdownOpen = ref<number | null>(null);
