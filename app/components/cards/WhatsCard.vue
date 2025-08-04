@@ -1,6 +1,6 @@
 <template>
   <NuxtLink :to="`/cases/${item.id}`" @click="handleClick">
-    <div class="whats-card bg-white rounded-card">
+    <div class="whats-card bg-white rounded-card h-[406px]">
       <div
         class="whats-card-image w-full h-full max-h-[252px] rounded-card overflow-hidden"
       >

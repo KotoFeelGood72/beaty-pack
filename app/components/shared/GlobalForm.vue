@@ -1,5 +1,5 @@
 <template>
-  <div :class="[isColor ? 'bg-white py-20' : '']">
+  <div :class="[isColor ? 'bg-white py-[100px]' : '']">
     <div class="container">
       <div
         class="flex justify-start gap-[118px] p-[57px] rounded-2xl"

@@ -10,7 +10,7 @@
       </div>
       <Navigation />
       <SearchButton />
-      <Btn name="Заказать звонок" />
+      <Btn name="Заказать звонок" theme="dark" />
     </div>
   </header>
 </template>
