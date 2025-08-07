@@ -13,7 +13,10 @@
         class="flex items-center gap-2 py-3 text-lightGreyBlue text-body-4 font-medium"
       >
         <p>{{ item.label }}</p>
-        <IconChevron v-if="item.submenu" />
+        <IconChevron
+          v-if="item.submenu"
+          class="group-hover:rotate-180 transition-all duration-300"
+        />
       </NuxtLink>
       <Submenu
         v-if="item.submenu && item.to === '/shop'"
