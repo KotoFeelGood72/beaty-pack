@@ -4,7 +4,7 @@
       :breadcrumbs="[{ label: 'Главная', to: '/' }, { label: 'Портфолио' }]"
       title="Портфолио"
     />
-    <div class="container flex flex-col gap-14">
+    <div class="container flex flex-col lg:gap-14 gap-12 lg:mb-100 mb-12">
       <WorksGrid />
       <div class="flex justify-center">
         <button
