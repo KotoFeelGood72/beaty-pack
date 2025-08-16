@@ -8,9 +8,10 @@
       ]"
     />
     <div class="container pb-[90px] -mt-3">
-      <p class="text-body-2 text-[#014B56] mb-4">10.07.2025</p>
-      <h1 class="text-headline-1 font-semibold mb-6">Длинное название статьи</h1>
-      <div class="content flex flex-col gap-4 text-dark">
+      <p class="text-body-2 text-[#014B56] mb-4 lg:block hidden">10.07.2025</p>
+      <h1 class="lg:text-headline-1 text-headline-6 font-semibold lg:mb-6 mb-2">Длинное название статьи</h1>
+      <p class="text-body-2 text-brown mb-5 lg:hidden block">10.07.2025</p>
+      <div class="content flex flex-col gap-4 text-dark font-manrope">
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
           Ipsum has been the industry's standard dummy text ever since the 1500s, when an
@@ -68,10 +69,10 @@
       <NuxtImg
         src="/images/posty.jpg"
         alt="posty"
-        class="w-full pt-10 rounded-card overflow-hidden"
+        class="w-full mt-10 rounded-card overflow-hidden"
       />
     </div>
-    <WhatsSliders :items="posts" title="Другие статьи" class="blog">
+    <WhatsSliders :items="posts" title="Другие статьи" class="blog max-lg:bg-lightGrey max-lg:mb-12">
       <template #card="{ item }">
         <ArticleCard :post="item" />
       </template>
@@ -81,6 +82,7 @@
       description="Наш менеджер свяжется с вами и подскажет, какие продукты помогут решить ваши задачи"
       buttonText="Отправить запрос"
       :isColor="true"
+      class="max-lg:mb-12"
     />
   </div>
 </template>

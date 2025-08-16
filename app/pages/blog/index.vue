@@ -4,8 +4,8 @@
       :breadcrumbs="[{ label: 'Главная', to: '/' }, { label: 'Блог' }]"
       title="Блог"
     />
-    <div class="container">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-11 mb-11">
+    <div class="container lg:mb-60 mb-7">
+      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 lg:mb-11 mb-7">
         <ArticleCard v-for="post in paginatedPosts" :key="post.id" :post="post" />
       </div>
       <Pagination
