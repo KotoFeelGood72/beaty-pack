@@ -5,7 +5,7 @@
       title="С кем мы работаем"
     />
     <div class="container">
-      <div class="grid grid-cols-3 gap-y-8 gap-x-5">
+      <div class="grid lg:grid-cols-3 grid-cols-2 lg:gap-y-8 gap-y-[62px] gap-x-[10px]">
         <WhatsCard v-for="(item, idx) in cases" :key="item.id" :item="item" :idx="idx" />
       </div>
     </div>
