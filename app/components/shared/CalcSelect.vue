@@ -1,12 +1,12 @@
 <template>
   <div class="calc-select">
-    <label v-if="label" class="block text-sm font-bold text-gray-900 mb-2">
+    <label v-if="label" class="calc-select-label">
       {{ label }}
     </label>
     
-    <div class="relative">
+    <div class="select-container">
       <div 
-        class="select-input cursor-pointer"
+        class="select-input"
         :class="{ 'active': isOpen || isActive }"
         @click="toggleDropdown"
         @blur="handleBlur"
@@ -93,55 +93,100 @@ const handleBlur = () => {
 
 <style scoped>
 .calc-select {
-  @apply w-full;
+  width: 100%;
+}
+
+.calc-select-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.select-container {
+  position: relative;
 }
 
 .select-input {
-  @apply w-full bg-white border border-gray-300 rounded-lg px-4 py-3 flex items-center justify-between transition-all duration-200;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+  cursor: pointer;
   min-height: 48px;
 }
 
 .select-input.active {
-  @apply border-lime-500;
+  border-color: #84cc16;
 }
 
 .select-value {
-  @apply text-gray-700 text-sm;
+  color: #374151;
+  font-size: 0.875rem;
 }
 
 .select-value.placeholder {
-  @apply text-gray-400;
+  color: #9ca3af;
 }
 
 .select-arrow {
-  @apply text-gray-600 transition-transform duration-200;
+  color: #6b7280;
+  transition: transform 0.2s ease;
 }
 
 .select-arrow.rotated {
-  @apply rotate-180;
+  transform: rotate(180deg);
 }
 
 .select-dropdown {
-  @apply absolute top-full left-0 right-0 z-10 mt-1;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin-top: 0.25rem;
 }
 
 .dropdown-content {
-  @apply bg-white border border-gray-300 rounded-b-lg shadow-lg max-h-48 overflow-y-auto;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  max-height: 12rem;
+  overflow-y: auto;
 }
 
 .dropdown-item {
-  @apply px-4 py-3 text-sm text-gray-700 cursor-pointer hover:bg-gray-50 transition-colors duration-150;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f9fafb;
 }
 
 .dropdown-item.selected {
-  @apply bg-lime-50 text-lime-700;
+  background-color: #f7fee7;
+  color: #65a30d;
 }
 
 .dropdown-item:first-child {
-  @apply rounded-t-lg;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 
 .dropdown-item:last-child {
-  @apply rounded-b-lg;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 </style> 

@@ -1,11 +1,11 @@
 <template>
-  <div class="py-[100px]">
+  <div class="lg:py-100 py-60 overflow-hidden">
     <div class="container">
       <div class="space-y-6">
-        <h3 class="max-w-[910px] text-headline-2 font-semibold">
+        <h3 class="max-w-[910px] lg:text-headline-2 font-semibold text-headline-6">
           Более 13 лет занимаемся производством упаковки и сувенирной продукцией
         </h3>
-        <p class="max-w-[783px] text-lightGreyBlue">
+        <p class="max-w-[783px] text-lightGreyBlue font-manrope line-clamp-4">
           В целом, конечно, понимание сути ресурсосберегающих технологий предопределяет
           высокую востребованность распределения внутренних резервов и ресурсов.
           Банальные, но неопровержимые выводы, а также активно развивающиеся страны
@@ -16,7 +16,7 @@
         </p>
         <Btn name="Узнать подробнее" class="inline-block" />
       </div>
-      <NuxtImg class="w-full" src="/images/countries.png" alt="countries" />
+      <NuxtImg class="lg:w-full max-lg:w-[700px]" src="/images/countries.png" alt="countries" />
     </div>
   </div>
 </template>

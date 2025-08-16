@@ -283,3 +283,69 @@ export function initializeFormData(params: any[]): Record<number, any> {
 
   return formData;
 }
+
+export const useCalculatorApi = () => {
+  const config = useRuntimeConfig();
+  
+  // Получить заголовки для API запросов
+  const getApiHeaders = () => {
+    const headers: Record<string, string> = {
+      "X-API-Domain": config.public.apiDomain,
+      "Content-Type": "application/json",
+    };
+
+    // API ключ доступен только на сервере
+    if (process.server && config.apiKey) {
+      headers["X-API-Key"] = config.apiKey;
+    }
+
+    return headers;
+  };
+
+  // Базовый URL для API
+  const getBaseUrl = () => {
+    return config.public.apiBaseUrl;
+  };
+
+  // Выполнить API запрос
+  const apiRequest = async <T>(
+    endpoint: string,
+    options: {
+      method?: string;
+      body?: any;
+      params?: Record<string, any>;
+    } = {}
+  ): Promise<T> => {
+    const { method = "GET", body, params } = options;
+    
+    let url = `${getBaseUrl()}${endpoint}`;
+    
+    // Добавляем параметры к URL для GET запросов
+    if (params && Object.keys(params).length > 0) {
+      const searchParams = new URLSearchParams();
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          searchParams.append(key, String(value));
+        }
+      });
+      url += `?${searchParams.toString()}`;
+    }
+
+    const requestOptions: any = {
+      method,
+      headers: getApiHeaders(),
+    };
+
+    if (body && method !== "GET") {
+      requestOptions.body = body;
+    }
+
+    return await $fetch<T>(url, requestOptions);
+  };
+
+  return {
+    getApiHeaders,
+    getBaseUrl,
+    apiRequest,
+  };
+};

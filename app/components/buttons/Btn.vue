@@ -1,6 +1,6 @@
 <template>
   <div
-    class="py-4 px-[28px] rounded-xl cursor-pointer transition-all duration-200 hover:opacity-90 text-center"
+    class="py-4 px-[28px] rounded-xl cursor-pointer transition-all duration-200 hover:opacity-90 text-center text-body-1 font-normal font-manrope"
     :class="themeClasses"
   >
     {{ name }}
@@ -16,7 +16,7 @@ const props = defineProps<{
 const themeClasses = computed(() => {
   switch (props.theme) {
     case "primary":
-      return "bg-black text-white text-body-1";
+      return "bg-black text-white ";
     case "secondary":
       return "bg-white text-gray-800 border border-gray-300";
     case "light":

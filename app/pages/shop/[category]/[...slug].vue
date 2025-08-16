@@ -1,17 +1,18 @@
 <template>
   <div class="">
-    <div class="container">
+    <div class="container flex gap-10 mb-100">
       <ProductSlider :images="productViewImages" />
-      <ProductInfo />
+      <ProductInfo :info="info" :prices="prices" :sizes="sizes" :tirages="tirages" />
     </div>
-    <div class="container">
-      <div>
-        <div v-for="value in services" :key="value">
+    <div class="container mb-10">
+      <div class="flex justify-between items-center gap-12">
+        <div v-for="value in services" :key="value" class="flex items-center gap-4 text-headline-5 font-onest ">
           <IconsFillCheck />
           <p>{{ value }}</p>
         </div>
       </div>
     </div>
+    <BlockCalc :calculatorId="1" />
     <WhatsSliders :items="cases">
       <template #card="{ item }">
         <WhatsCard :item="item" />
@@ -37,6 +38,8 @@ import { cases } from "~/data/Cases";
 import WhatsCard from "~/components/cards/WhatsCard.vue";
 import Btn from "~/components/buttons/Btn.vue";
 import ProductSlider from "~/components/shared/ProductSlider.vue";
+import ProductInfo from "~/components/shared/ProductInfo.vue";
+import BlockCalc from "~/components/blocks/BlockCalc.vue";
 
 const services = [
   "Бесплатный макет",
@@ -63,6 +66,21 @@ const productViewImages = [
     alt: "Product View 1",
   },
 ];
+
+// Данные для ProductInfo
+const info = {
+  short: [
+    { label: "Материал", value: "Пластик" },
+    { label: "Размер", value: "10x15 см" },
+  ]
+};
+
+const tirages = ['от 100 шт.', 'от 1000 шт.', 'от 2000 шт.']
+
+const sizes = ['90 руб.', '40 руб.', '28 руб.']
+
+const prices = ['9 000 руб.', '40 000 руб.', '56 000 руб.']
+
 </script>
 
 <style scoped></style>

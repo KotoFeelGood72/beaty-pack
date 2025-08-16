@@ -34,13 +34,15 @@
               class="transition-all duration-100 ease-linear"
             />
           </svg>
+          <img v-if="item.thumbnail" :src="item.thumbnail"
+          :alt="item.title">
 
-          <NuxtImg
+          <!-- <NuxtImg
             v-if="item.thumbnail"
             :src="item.thumbnail"
             :alt="item.title"
-            class=""
-          />
+            class="w-full h-full max-w-20 max-h-20"
+          /> -->
           <img src="/images/plus.svg" alt="" v-else-if="item.title === 'Свое лого'" />
         </div>
       </div>

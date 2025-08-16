@@ -12,9 +12,9 @@ export const aboutSubmenu = [
   { label: "О нас", to: "/about" },
   { label: "Кейсы", to: "/cases" },
   { label: "Портфолио", to: "/works" },
-  { label: "Печать", to: "/printing" },
+  { label: "Печать", to: "/shop/printing" },
   { label: "Отзывы", to: "/reviews" },
-  { label: "Реквизиты", to: "/requisites" },
+  { label: "Реквизиты", to: "/" },
   { label: "Блог", to: "/blog" },
   { label: "Контакты", to: "/contacts" },
 ];

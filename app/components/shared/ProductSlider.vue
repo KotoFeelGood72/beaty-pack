@@ -1,5 +1,5 @@
 <template>
-  <div class="product-view">
+  <div class="product-view max-w-[720px] w-full">
     <div>
       <PageHead
         :breadcrumbs="[
@@ -32,26 +32,22 @@
         title="   Бумажный пакет Великан v2"
       />
     </div>
-    <div class="">
-      <div class="">
-        <div class="">
-          <NuxtImg
+    <div class="flex flex-wrap gap-5 ">
+      <div class="rounded-lg overflow-hidden flex-grow h-[460px]">
+        <NuxtImg
             v-if="images && images.length > 0 && images[0]"
             :src="images[0].src"
             :alt="images[0].alt"
-            class=""
+            class="w-full h-full object-cover "
             loading="lazy"
           />
-        </div>
       </div>
 
-      <div class="">
-        <div class="">
-          <div v-for="(image, index) in images.slice(1)" :key="index" class="">
-            <NuxtImg :src="image.src" :alt="image.alt" class="" loading="lazy" />
+      <div class="space-y-5">
+          <div v-for="(image, index) in images.slice(1)" :key="index" class="rounded-lg overflow-hidden w-[140px] h-[140px]">
+            <NuxtImg :src="image.src" :alt="image.alt" class="w-full h-full object-cover" loading="lazy" />
           </div>
         </div>
-      </div>
     </div>
   </div>
 </template>

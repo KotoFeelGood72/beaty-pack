@@ -1,7 +1,7 @@
 <template>
   <div class="calc-step">
     <CalcHead title="Основа" :step="2" />
-    <div class="space-y-4">
+    <div class="step-content">
       <CalcSelect
         v-model="lamination"
         :options="laminationOptions"
@@ -21,7 +21,7 @@
         label="Цветность"
         placeholder="Выберите цветность"
       />
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid-inputs">
         <CalcInput v-model="front" type="number" label="Лицо" placeholder="0" />
         <CalcInput v-model="back" type="number" label="Оборот" placeholder="0" />
       </div>
@@ -37,8 +37,8 @@
         label="Бумага"
         placeholder="Выберите бумагу"
       />
-      <div class="space-y-2">
-        <label class="block text-sm font-medium text-gray-700">
+      <div class="file-upload-section">
+        <label class="file-upload-label">
           Здесь вы можете прикрепить макет или логотип для размещения
         </label>
         <CalcFileUpload
@@ -113,4 +113,29 @@ const handleFileRemoved = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.grid-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.file-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.file-upload-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+</style>

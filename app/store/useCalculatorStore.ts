@@ -68,15 +68,16 @@ interface PaymentInfo {
   Error: string[];
 }
 
+// Интерфейс для состояния шагов калькулятора
+interface CalculatorStepsState {
+  currentStep: number;
+  visibleSteps: number[];
+  completedSteps: number[];
+  totalSteps: number;
+}
+
 export const useCalculatorStore = defineStore("calculator", {
   state: () => ({
-    // API конфигурация
-    apiConfig: {
-      baseUrl: "https://api.simprint.ddns.net/v1/",
-      domain: "simprint",
-      key: "81d3c7e1-3552-4012-8102-9e35657559c5",
-    },
-
     // Состояние калькуляторов
     calculators: [] as Calculator[],
     currentCalculator: null as Calculator | null,
@@ -89,6 +90,9 @@ export const useCalculatorStore = defineStore("calculator", {
 
     // Кэш времени последнего изменения
     lastUpdateTime: null as string | null,
+
+    // Состояние шагов для каждого калькулятора
+    calculatorSteps: {} as Record<number, CalculatorStepsState>,
   }),
 
   getters: {
@@ -121,15 +125,146 @@ export const useCalculatorStore = defineStore("calculator", {
         (now.getTime() - lastUpdate.getTime()) / (1000 * 60 * 60);
       return diffHours > 1; // Обновляем кэш каждый час
     },
+
+    // Получить состояние шагов для конкретного калькулятора
+    getCalculatorSteps: (state) => (calculatorId: number) => {
+      return state.calculatorSteps[calculatorId] || {
+        currentStep: 1,
+        visibleSteps: [1],
+        completedSteps: [],
+        totalSteps: 4,
+      };
+    },
+
+    // Проверить, видим ли шаг для конкретного калькулятора
+    isStepVisible: (state) => (calculatorId: number, step: number) => {
+      const stepsState = state.calculatorSteps[calculatorId];
+      if (!stepsState) return step === 1;
+      return stepsState.visibleSteps.includes(step);
+    },
+
+    // Проверить, завершен ли шаг для конкретного калькулятора
+    isStepCompleted: (state) => (calculatorId: number, step: number) => {
+      const stepsState = state.calculatorSteps[calculatorId];
+      if (!stepsState) return false;
+      return stepsState.completedSteps.includes(step);
+    },
+
+    // Получить текущий шаг для конкретного калькулятора
+    getCurrentStep: (state) => (calculatorId: number) => {
+      const stepsState = state.calculatorSteps[calculatorId];
+      return stepsState ? stepsState.currentStep : 1;
+    },
   },
 
   actions: {
-    // Получить заголовки для API запросов
-    getApiHeaders() {
-      return {
-        "X-API-Domain": this.apiConfig.domain,
-        "X-API-Key": this.apiConfig.key,
-        "Content-Type": "application/json",
+    // Инициализировать состояние шагов для калькулятора
+    initializeCalculatorSteps(calculatorId: number, totalSteps: number = 4) {
+      this.calculatorSteps[calculatorId] = {
+        currentStep: 1,
+        visibleSteps: [1],
+        completedSteps: [],
+        totalSteps,
+      };
+    },
+
+    // Показать шаг для конкретного калькулятора
+    showStep(calculatorId: number, step: number) {
+      if (!this.calculatorSteps[calculatorId]) {
+        this.initializeCalculatorSteps(calculatorId);
+      }
+
+      const stepsState = this.calculatorSteps[calculatorId];
+      if (!stepsState.visibleSteps.includes(step)) {
+        stepsState.visibleSteps.push(step);
+        stepsState.visibleSteps.sort((a, b) => a - b);
+      }
+    },
+
+    // Скрыть шаг для конкретного калькулятора
+    hideStep(calculatorId: number, step: number) {
+      if (!this.calculatorSteps[calculatorId]) return;
+
+      const stepsState = this.calculatorSteps[calculatorId];
+      stepsState.visibleSteps = stepsState.visibleSteps.filter(s => s !== step);
+      
+      // Если скрываем текущий шаг, переходим к предыдущему видимому
+      if (stepsState.currentStep === step && stepsState.visibleSteps.length > 0) {
+        const currentIndex = stepsState.visibleSteps.indexOf(step);
+        if (currentIndex > 0) {
+          stepsState.currentStep = stepsState.visibleSteps[currentIndex - 1];
+        } else {
+          stepsState.currentStep = stepsState.visibleSteps[0];
+        }
+      }
+    },
+
+    // Перейти к следующему шагу для конкретного калькулятора
+    nextStep(calculatorId: number) {
+      if (!this.calculatorSteps[calculatorId]) {
+        this.initializeCalculatorSteps(calculatorId);
+      }
+
+      const stepsState = this.calculatorSteps[calculatorId];
+      const currentIndex = stepsState.visibleSteps.indexOf(stepsState.currentStep);
+      
+      if (currentIndex < stepsState.visibleSteps.length - 1) {
+        stepsState.currentStep = stepsState.visibleSteps[currentIndex + 1];
+      }
+    },
+
+    // Перейти к предыдущему шагу для конкретного калькулятора
+    prevStep(calculatorId: number) {
+      if (!this.calculatorSteps[calculatorId]) return;
+
+      const stepsState = this.calculatorSteps[calculatorId];
+      const currentIndex = stepsState.visibleSteps.indexOf(stepsState.currentStep);
+      
+      if (currentIndex > 0) {
+        stepsState.currentStep = stepsState.visibleSteps[currentIndex - 1];
+      }
+    },
+
+    // Перейти к конкретному шагу для конкретного калькулятора
+    goToStep(calculatorId: number, step: number) {
+      if (!this.calculatorSteps[calculatorId]) {
+        this.initializeCalculatorSteps(calculatorId);
+      }
+
+      const stepsState = this.calculatorSteps[calculatorId];
+      if (stepsState.visibleSteps.includes(step)) {
+        stepsState.currentStep = step;
+      }
+    },
+
+    // Отметить шаг как завершенный для конкретного калькулятора
+    completeStep(calculatorId: number, step: number) {
+      if (!this.calculatorSteps[calculatorId]) {
+        this.initializeCalculatorSteps(calculatorId);
+      }
+
+      const stepsState = this.calculatorSteps[calculatorId];
+      if (!stepsState.completedSteps.includes(step)) {
+        stepsState.completedSteps.push(step);
+        stepsState.completedSteps.sort((a, b) => a - b);
+      }
+    },
+
+    // Сбросить завершение шага для конкретного калькулятора
+    uncompleteStep(calculatorId: number, step: number) {
+      if (!this.calculatorSteps[calculatorId]) return;
+
+      const stepsState = this.calculatorSteps[calculatorId];
+      stepsState.completedSteps = stepsState.completedSteps.filter(s => s !== step);
+    },
+
+    // Сбросить все шаги для конкретного калькулятора
+    resetCalculatorSteps(calculatorId: number) {
+      this.calculatorSteps[calculatorId] = {
+        currentStep: 1,
+        visibleSteps: [1],
+        completedSteps: [],
+        totalSteps: 4,
       };
     },
 
@@ -139,13 +274,8 @@ export const useCalculatorStore = defineStore("calculator", {
         this.isLoading = true;
         this.error = null;
 
-        const response = await $fetch(
-          `${this.apiConfig.baseUrl}checktime.php`,
-          {
-            method: "GET",
-            headers: this.getApiHeaders(),
-          }
-        );
+        const { apiRequest } = useCalculatorApi();
+        const response = await apiRequest("checktime.php");
 
         this.lastUpdateTime = new Date().toISOString();
         return response;
@@ -163,23 +293,18 @@ export const useCalculatorStore = defineStore("calculator", {
         this.isLoading = true;
         this.error = null;
 
-        const params = new URLSearchParams();
+        const { apiRequest } = useCalculatorApi();
+        const params: Record<string, any> = {};
+        
         if (version) {
           if (Array.isArray(version)) {
-            params.append("Version", JSON.stringify(version));
+            params.Version = JSON.stringify(version);
           } else {
-            params.append("Version", version.toString());
+            params.Version = version.toString();
           }
         }
 
-        const url = `${this.apiConfig.baseUrl}list.php${
-          params.toString() ? "?" + params.toString() : ""
-        }`;
-
-        const response = await $fetch<Calculator[]>(url, {
-          method: "GET",
-          headers: this.getApiHeaders(),
-        });
+        const response = await apiRequest<Calculator[]>("list.php", { params });
 
         this.calculators = response;
         return response;
@@ -197,18 +322,18 @@ export const useCalculatorStore = defineStore("calculator", {
         this.isLoading = true;
         this.error = null;
 
-        const response = await $fetch<CalculatorForm>(
-          `${this.apiConfig.baseUrl}calcform.php`,
-          {
-            method: "POST",
-            headers: this.getApiHeaders(),
-            body: { id: calculatorId },
-          }
-        );
+        const { apiRequest } = useCalculatorApi();
+        const response = await apiRequest<CalculatorForm>("calcform.php", {
+          method: "POST",
+          body: { id: calculatorId },
+        });
 
         this.calculatorForm = response;
         this.currentCalculator =
           this.calculators.find((calc) => calc.Id === calculatorId) || null;
+
+        // Инициализируем шаги для этого калькулятора
+        this.initializeCalculatorSteps(calculatorId);
 
         return response;
       } catch (error: any) {
@@ -225,14 +350,11 @@ export const useCalculatorStore = defineStore("calculator", {
         this.isLoading = true;
         this.error = null;
 
-        const response = await $fetch<CalculationResponse>(
-          `${this.apiConfig.baseUrl}calculate.php`,
-          {
-            method: "POST",
-            headers: this.getApiHeaders(),
-            body: request,
-          }
-        );
+        const { apiRequest } = useCalculatorApi();
+        const response = await apiRequest<CalculationResponse>("calculate.php", {
+          method: "POST",
+          body: request,
+        });
 
         this.calculationResult = response;
         return response;
@@ -246,13 +368,14 @@ export const useCalculatorStore = defineStore("calculator", {
 
     // Получить изображение калькулятора
     getCalculatorImage(calculatorId: number, imageId?: string) {
+      const { getBaseUrl } = useCalculatorApi();
       const params = new URLSearchParams();
       params.append("id", calculatorId.toString());
       if (imageId) {
         params.append("image", imageId);
       }
 
-      return `${this.apiConfig.baseUrl}image.php?${params.toString()}`;
+      return `${getBaseUrl()}image.php?${params.toString()}`;
     },
 
     // Получить информацию об оплате заказа
@@ -261,19 +384,16 @@ export const useCalculatorStore = defineStore("calculator", {
         this.isLoading = true;
         this.error = null;
 
-        const params = new URLSearchParams();
-        params.append("ProductId", productId.toString());
+        const { apiRequest } = useCalculatorApi();
+        const params: Record<string, any> = {
+          ProductId: productId.toString(),
+        };
+        
         if (payment !== undefined) {
-          params.append("Payment", payment.toString());
+          params.Payment = payment.toString();
         }
 
-        const response = await $fetch<PaymentInfo>(
-          `${this.apiConfig.baseUrl}payment.php?${params.toString()}`,
-          {
-            method: "GET",
-            headers: this.getApiHeaders(),
-          }
-        );
+        const response = await apiRequest<PaymentInfo>("payment.php", { params });
 
         return response;
       } catch (error: any) {
@@ -290,17 +410,14 @@ export const useCalculatorStore = defineStore("calculator", {
         this.isLoading = true;
         this.error = null;
 
-        const response = await $fetch<PaymentInfo>(
-          `${this.apiConfig.baseUrl}payment.php`,
-          {
-            method: "POST",
-            headers: this.getApiHeaders(),
-            body: {
-              ProductId: productId,
-              Payment: payment,
-            },
-          }
-        );
+        const { apiRequest } = useCalculatorApi();
+        const response = await apiRequest<PaymentInfo>("payment.php", {
+          method: "POST",
+          body: {
+            ProductId: productId,
+            Payment: payment,
+          },
+        });
 
         return response;
       } catch (error: any) {
@@ -336,12 +453,6 @@ export const useCalculatorStore = defineStore("calculator", {
     resetCalculation() {
       this.calculationResult = null;
       this.error = null;
-    },
-
-    // Установить конфигурацию API
-    setApiConfig(domain: string, key: string) {
-      this.apiConfig.domain = domain;
-      this.apiConfig.key = key;
     },
   },
 });

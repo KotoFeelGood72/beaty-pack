@@ -1,10 +1,10 @@
 <template>
   <div class="calc-radio-group">
-    <label v-if="label" class="block text-sm font-bold text-gray-900 mb-2">
+    <label v-if="label" class="calc-radio-label">
       {{ label }}
     </label>
     
-    <div class="flex gap-3">
+    <div class="calc-radio-options">
       <button
         v-for="option in options"
         :key="option.value"
@@ -44,27 +44,50 @@ const selectOption = (value: string | number) => {
 
 <style scoped>
 .calc-radio-group {
-  @apply w-full;
+  width: 100%;
+}
+
+.calc-radio-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.calc-radio-options {
+  display: flex;
+  gap: 0.75rem;
 }
 
 .radio-button {
-  @apply flex-1 bg-white border border-gray-300 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 cursor-pointer;
+  flex: 1;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
   min-height: 48px;
 }
 
 .radio-button:hover {
-  @apply border-gray-400;
+  border-color: #9ca3af;
 }
 
 .radio-button.selected {
-  @apply border-lime-500 text-gray-700;
+  border-color: #84cc16;
+  color: #374151;
 }
 
 .radio-button:not(.selected) {
-  @apply text-gray-400;
+  color: #9ca3af;
 }
 
 .radio-button:focus {
-  @apply outline-none ring-2 ring-lime-500 ring-opacity-50;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(132, 204, 22, 0.5);
 }
 </style> 

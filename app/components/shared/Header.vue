@@ -4,11 +4,11 @@
       class="container flex items-center justify-between header-shadow rounded-b-[20px] gap-6 bg-white"
     >
       <div class="logo flex-grow">
-        <NuxtLink to="/" class="flex items-center justify-start p-2">
-          <NuxtImg src="images/logo.svg" alt="logo" class="" />
+        <NuxtLink to="/" class="flex items-center justify-start p-2 max-w-[154px]">
+          <NuxtImg src="images/logo.svg" alt="logo" class="w-full h-full" />
         </NuxtLink>
       </div>
-      <Navigation />
+      <Navigation class="max-lg:hidden"/>
       <SearchButton @click="openModal('fly')" />
       <Btn name="Заказать звонок" theme="dark" @click="openModal('callback')" />
     </div>

@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-lightGrey py-[100px]">
-    <div class="container">
-      <div class="flex justify-between items-center pb-9 mb-9 relative">
-        <h2 class="text-headline-2 font-semibold">{{ title }}</h2>
-        <div class="flex gap-4">
+  <div class="bg-lightGrey lg:py-100 pt-[44px] pb-[78px] ">
+    <div class="container relative">
+      <div class="flex justify-between items-center lg:pb-9 lg:mb-9  mb-5 lg:relative">
+        <h2 class="lg:text-headline-2 text-headline-6 font-semibold">{{ title }}</h2>
+        <div class="lg:flex gap-4 hidden">
           <div
             class="w-12 h-12 bg-brown rounded-full cursor-pointer flex items-center justify-center swiper-button-prev"
             :class="`${uniqueId}-button-prev`"
@@ -18,14 +18,13 @@
           </div>
         </div>
         <div
-          class="swiper-pagination w-full !bottom-0"
+          class="swiper-pagination w-full !bottom-0 whats-pagination"
           :class="`${uniqueId}-pagination`"
         ></div>
       </div>
       <Swiper
         class="pt-8"
         :modules="[Navigation, Pagination]"
-        :space-between="20"
         :pagination="{
           el: `.${uniqueId}-pagination`,
           type: 'progressbar',
@@ -36,8 +35,13 @@
           prevEl: `.${uniqueId}-button-prev`,
         }"
         :breakpoints="{
-          768: {
+          367: {
+            slidesPerView: 2.3,
+            spaceBetween: 8,
+          },
+          1024: {
             slidesPerView: 3,
+            spaceBetween: 20,
           },
         }"
       >
@@ -53,6 +57,7 @@
 import IconArrowSlider from "@/components/icons/icon-arrow-slider.vue";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { computed } from "vue";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -68,7 +73,23 @@ const props = withDefaults(defineProps<Props>(), {
   items: () => [],
 });
 
-const uniqueId = `${props.className}-${Math.random().toString(36).substr(2, 9)}`;
+// Создаем стабильный ID на основе props
+const uniqueId = computed(() => {
+  // Создаем стабильную строку на основе всех props
+  const stableString = `${props.title || ''}-${props.className || ''}-${props.items.length || 0}`;
+  
+  // Простая хеш-функция для создания стабильного ID
+  let hash = 0;
+  for (let i = 0; i < stableString.length; i++) {
+    const char = stableString.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  
+  // Используем абсолютное значение и преобразуем в base36
+  const hashString = Math.abs(hash).toString(36);
+  return `${props.className || 'swiper'}-${hashString}`;
+});
 </script>
 
 <style scoped>
@@ -77,10 +98,22 @@ const uniqueId = `${props.className}-${Math.random().toString(36).substr(2, 9)}`
   height: 2px;
   top: auto;
   bottom: 0;
+
+
 }
 
 :deep(.swiper-pagination-progressbar-fill) {
   background: #8b4513 !important;
   height: 2px;
+}
+
+@media (max-width: 1024px) {
+  .whats-pagination {
+    top: calc(100% + 25px)!important;
+    position: absolute;
+    max-width: calc(100% - 40px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 </style>

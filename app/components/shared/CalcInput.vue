@@ -1,10 +1,10 @@
 <template>
-  <div class="relative h-[60px]">
+  <div class="calc-input-container">
     <input
       type="text"
       v-model="localValue"
       :placeholder="placeholder"
-      class="w-full h-full p-5 rounded-lg text-lightGrey"
+      class="calc-input"
       @input="handleInput"
     />
   </div>
@@ -72,4 +72,30 @@ const handleInput = (event: Event) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.calc-input-container {
+  position: relative;
+  height: 60px;
+}
+
+.calc-input {
+  width: 100%;
+  height: 100%;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.calc-input:focus {
+  outline: none;
+  border-color: #84cc16;
+}
+
+.calc-input::placeholder {
+  color: #9ca3af;
+}
+</style>

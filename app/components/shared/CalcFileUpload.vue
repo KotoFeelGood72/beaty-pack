@@ -1,6 +1,6 @@
 <template>
   <div class="calc-file-upload">
-    <label v-if="label" class="block text-sm font-bold text-gray-900 mb-2">
+    <label v-if="label" class="calc-file-label">
       {{ label }}
     </label>
     
@@ -9,7 +9,7 @@
       <input
         ref="fileInput"
         type="file"
-        class="hidden"
+        class="file-input"
         :accept="accept"
         @change="handleFileSelect"
       />
@@ -130,59 +130,133 @@ const formatFileSize = (bytes: number): string => {
 
 <style scoped>
 .calc-file-upload {
-  @apply w-full;
+  width: 100%;
+}
+
+.calc-file-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.file-input {
+  display: none;
 }
 
 .upload-area {
-  @apply w-full;
+  width: 100%;
 }
 
 .upload-button {
-  @apply w-full bg-gray-600 hover:bg-gray-700 text-white rounded-lg px-4 py-3 flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer;
-  min-height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 2px dashed #d1d5db;
+  border-radius: 0.5rem;
+  background-color: #f9fafb;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-button:hover:not(:disabled) {
+  border-color: #9ca3af;
+  background-color: #f3f4f6;
 }
 
 .upload-button.loading {
-  @apply bg-gray-500 cursor-not-allowed;
-}
-
-.upload-button:disabled {
-  @apply cursor-not-allowed;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .upload-icon {
-  @apply flex items-center justify-center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upload-text {
-  @apply text-sm font-medium;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .uploaded-file {
-  @apply w-full bg-white border border-gray-300 rounded-lg p-4 flex items-center justify-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background-color: white;
 }
 
 .file-info {
-  @apply flex items-center gap-3 flex-1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
 }
 
 .file-icon {
-  @apply flex items-center justify-center w-8 h-8 bg-gray-100 border border-gray-300 rounded;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: #f3f4f6;
+  border-radius: 0.375rem;
 }
 
 .file-details {
-  @apply flex flex-col;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .file-name {
-  @apply text-sm font-medium text-gray-900;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
 }
 
 .file-size {
-  @apply text-xs text-gray-500;
+  font-size: 0.75rem;
+  color: #6b7280;
 }
 
 .delete-button {
-  @apply px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded hover:bg-gray-200 transition-colors duration-150;
+  padding: 0.5rem 1rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-</style> 
+
+.delete-button:hover {
+  background-color: #dc2626;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+</style>

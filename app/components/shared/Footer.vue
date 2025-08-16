@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer bg-black text-white pt-[100px] pb-6">
+  <footer class="footer bg-black text-white pt-100 pb-6">
     <div class="container">
       <div
         class="footer-top grid grid-cols-4 gap-20 pb-[60px] border-b border-darkGrey mb-6"

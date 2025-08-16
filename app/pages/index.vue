@@ -5,7 +5,7 @@
     <Transition name="modal">
       <StorieslSliderModal v-if="isOpen" />
     </Transition>
-    <CatsBlock class="mb-[100px]" title="Популярные продукты" />
+    <CatsBlock class="lg:mb-100 mb-60" title="Популярные продукты" />
     <GlobalForm
       title="Поможем подобрать оптимальные решения для вашего бизнеса"
       description="Наш менеджер свяжется с вами и подскажет, какие продукты помогут решить ваши задачи"
@@ -18,7 +18,7 @@
       </template>
     </WhatsSliders>
     <CountriesBlock />
-    <div class="bg-lightGrey pt-[100px]">
+    <div class="bg-lightGrey pt-100">
       <HappyBlock />
     </div>
     <WhatsSliders :items="posts" title="Блог" class="blog">
