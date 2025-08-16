@@ -1,7 +1,7 @@
 <template>
   <div class="shop-card " >
     <div class="shop-card-image flex items-center justify-center relative mb-4">
-      <div class="shop__chip absolute top-2 left-2 p-3 rounded-lg" :class="[chipTheme]">
+      <div class="shop__chip absolute top-2 left-2 lg:p-3 py-1 px-2 lg:rounded-lg rounded-md max-lg:text-body-5" :class="[chipTheme]">
         {{ item.chip }}
       </div>
       <img 

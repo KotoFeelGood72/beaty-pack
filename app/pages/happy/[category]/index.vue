@@ -2,7 +2,6 @@
   <div>
     <PageHead
       :breadcrumbs="[{ label: 'Главная', to: '/' }, { label: 'Праздники' }]"
-      title="Сувенирная продукция к празднику"
     />
     <HappyBlock />
     <WhatsSliders :items="cases">

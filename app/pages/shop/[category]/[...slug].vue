@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="container flex gap-10 mb-100">
-      <ProductSlider :images="productViewImages" />
+      <ProductSlider :images="responsiveProductImages" />
       <ProductInfo :info="info" :prices="prices" :sizes="sizes" :tirages="tirages" />
     </div>
     <div class="container mb-10">
@@ -40,6 +40,7 @@ import Btn from "~/components/buttons/Btn.vue";
 import ProductSlider from "~/components/shared/ProductSlider.vue";
 import ProductInfo from "~/components/shared/ProductInfo.vue";
 import BlockCalc from "~/components/blocks/BlockCalc.vue";
+import { useResponsiveImage } from "~/utils/useResponsiveImage";
 
 const services = [
   "Бесплатный макет",
@@ -48,24 +49,37 @@ const services = [
   "Работаем по ЭДО",
 ];
 
-const productViewImages = [
+// Используем утилиту для адаптивных изображений
+const { getResponsiveImages } = useResponsiveImage();
+
+// Массив изображений с адаптивными версиями
+const productImages = [
   {
-    src: "/images/product-view-1.png",
-    alt: "Product View 1",
+    mobile: "/images/product-view-1-mobile.png",
+    desktop: "/images/product-view-1.png",
+    alt: "Product View 1"
   },
   {
-    src: "/images/product-view-2.png",
-    alt: "Product View 1",
+    mobile: "/images/product-view-2-mobile.png", 
+    desktop: "/images/product-view-2.png",
+    alt: "Product View 2"
   },
   {
-    src: "/images/product-view-2.png",
-    alt: "Product View 1",
+    mobile: "/images/product-view-3-mobile.png",
+    desktop: "/images/product-view-2.png", 
+    alt: "Product View 3"
   },
   {
-    src: "/images/product-view-2.png",
-    alt: "Product View 1",
+    mobile: "/images/product-view-4-mobile.png",
+    desktop: "/images/product-view-2.png",
+    alt: "Product View 4"
   },
 ];
+
+// Получаем адаптивные изображения
+const responsiveProductImages = computed(() => {
+  return getResponsiveImages(productImages);
+});
 
 // Данные для ProductInfo
 const info = {

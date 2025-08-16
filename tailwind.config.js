@@ -73,6 +73,7 @@ module.exports = {
                 'body-3': ['16px', '1.4'],
                 'body-4': ['14px', '1.4'],
                 'body-5': ['12px', '1.4'],
+                'body-6': ['10px', '1.4'],
             },
             fontWeight: {
                 regular: '400',

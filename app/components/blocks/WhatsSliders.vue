@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-lightGrey lg:py-100 pt-[44px] pb-[78px] ">
+  <div class="lg:bg-lightGrey lg:py-100 pt-[39px] pb-[78px] ">
     <div class="container relative">
       <div class="flex justify-between items-center lg:pb-9 lg:mb-9  mb-5 lg:relative">
         <h2 class="lg:text-headline-2 text-headline-6 font-semibold">{{ title }}</h2>
@@ -23,7 +23,7 @@
         ></div>
       </div>
       <Swiper
-        class="pt-8"
+        class="pt-8 mobile_styles_slider"
         :modules="[Navigation, Pagination]"
         :pagination="{
           el: `.${uniqueId}-pagination`,
@@ -114,6 +114,10 @@ const uniqueId = computed(() => {
     max-width: calc(100% - 40px);
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .mobile_styles_slider {
+    overflow: visible;
   }
 }
 </style>

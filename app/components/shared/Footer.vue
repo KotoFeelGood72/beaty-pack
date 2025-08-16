@@ -1,25 +1,25 @@
 <template>
-  <footer class="footer bg-black text-white pt-100 pb-6">
+  <footer class="footer bg-[#21272A] text-white pt-100 pb-6">
     <div class="container">
       <div
-        class="footer-top grid grid-cols-4 gap-20 pb-[60px] border-b border-darkGrey mb-6"
+        class="footer-top grid lg:grid-cols-4 grid-cols-1 lg:gap-20 gap-[60px] pb-[60px] border-b border-darkGrey mb-6 "
       >
         <div>
-          <NuxtLink to="/" class="mb-10 block">
-            <NuxtImg src="/images/footer-logo.png" alt="logo" />
+          <NuxtLink to="/" class="lg:mb-10 mb-6 block max-lg:w-[160px]">
+            <NuxtImg src="/images/footer-logo.png" alt="logo" class="max-lg:w-full" />
           </NuxtLink>
-          <div class="space-y-6">
+          <div class="lg:space-y-6 space-y-5">
             <FooterHeadCol title="Покупателям" icon="square" />
-            <ul class="space-y-4">
+            <ul class="space-y-4 max-lg:text-body-4 font-manrope">
               <li><NuxtLink to="/">Требования к файлам</NuxtLink></li>
               <li><NuxtLink to="/">Шаблоны макетов</NuxtLink></li>
               <li><NuxtLink to="/">Минимальная сумма заказа</NuxtLink></li>
             </ul>
           </div>
         </div>
-        <div class="space-y-6">
+        <div class="space-y-6 max-lg:order-1">
           <FooterHeadCol title="Каталог" icon="burger" />
-          <ul class="space-y-4">
+          <ul class="space-y-4 max-lg:text-body-4 font-manrope">
             <li><NuxtLink to="/">Настольные игры</NuxtLink></li>
             <li><NuxtLink to="/">Полиграфия</NuxtLink></li>
             <li><NuxtLink to="/">Упаковка</NuxtLink></li>
@@ -28,9 +28,9 @@
             <li><NuxtLink to="/">Продукция к празднику</NuxtLink></li>
           </ul>
         </div>
-        <div class="space-y-6">
+        <div class="space-y-6 max-lg:order-1">
           <FooterHeadCol title="О компании" icon="home" />
-          <ul class="space-y-4">
+          <ul class="space-y-4 max-lg:text-body-4 font-manrope">
             <li><NuxtLink to="/">О нас</NuxtLink></li>
             <li><NuxtLink to="/">Кейсы</NuxtLink></li>
             <li><NuxtLink to="/">Портфолио</NuxtLink></li>
@@ -40,7 +40,7 @@
             <li><NuxtLink to="/">Контакты</NuxtLink></li>
           </ul>
         </div>
-        <div class="space-y-6">
+        <div class="space-y-6 max-lg:order-1">
           <FooterHeadCol title="Контакты" icon="contacts" />
           <div class="space-y-4">
             <a href="tel:+73432891480" class="block">+7 (343) 289-14-80</a>

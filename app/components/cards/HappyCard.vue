@@ -9,7 +9,7 @@
         <p class="text-lightGreyBlue">{{ happy.description }}</p>
       </div>
       <div
-        class="w-full h-full absolute top-0 left-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+        class="w-full h-full absolute top-0 left-0 opacity-0 hover:opacity-100 transition-opacity duration-300 max-lg:hidden"
       >
         <NuxtImg :src="happy.image" alt="happy" class="w-full h-full object-cover" />
       </div>

@@ -13,7 +13,7 @@
           :class="getCardClasses(index)"
         />
       </div>
-      <div class="w-full h-[500px] rounded-card overflow-hidden">
+      <div class="w-full h-[500px] rounded-card overflow-hidden lg:mb-100 max-lg:mb-[71px]">
         <NuxtImg src="/images/map.png" alt="map" class="w-full h-full object-cover" />
       </div>
     </div>
@@ -40,7 +40,10 @@ const getCardClasses = (index: number) => {
   grid-template-rows: auto auto;
 }
 
-.regular-card {
+
+
+@media(min-width: 768px) {
+  .regular-card {
   grid-column: span 1;
   grid-row: span 1;
 }
@@ -48,5 +51,19 @@ const getCardClasses = (index: number) => {
 .requisites-card {
   grid-column: 3;
   grid-row: 1 / 3;
+}
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .contact-grid div:nth-child(1) {order: 1}
+  .contact-grid div:nth-child(2) {order: 3}
+  .contact-grid div:nth-child(3) {order: 5}
+  .contact-grid div:nth-child(4) {order: 4}
+  .contact-grid div:nth-child(5) {order: 2}
 }
 </style>

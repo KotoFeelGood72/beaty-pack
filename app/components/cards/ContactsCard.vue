@@ -47,6 +47,7 @@
       name="Скачать карточку предприятия"
       v-if="card.requisites"
       :class="card.requisites ? '!mt-10' : ''"
+      class="max-lg:text-body-2 max-lg:w-full"
     />
   </div>
 </template>

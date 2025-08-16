@@ -18,7 +18,7 @@
       ]"
       title="Полиграфическая продукция"
     />
-    <CatsBlock class="mb-100" />
+    <CatsBlock class="lg:mb-100 mb-10" />
     <WhatsSliders :items="cases">
       <template #card="{ item }">
         <WhatsCard :item="item" />

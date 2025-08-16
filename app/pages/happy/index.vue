@@ -2,7 +2,6 @@
   <div>
     <PageHead
       :breadcrumbs="[{ label: 'Главная', to: '/' }, { label: 'Праздники' }]"
-      title="Сувенирная продукция к празднику"
     />
     <HappyBlock />
     <WhatsSliders :items="cases">
@@ -28,6 +27,9 @@ import GlobalForm from "~/components/shared/GlobalForm.vue";
 import SeoBlock from "~/components/shared/SeoBlock.vue";
 import { cases } from "~/data/Cases";
 import WhatsCard from "~/components/cards/WhatsCard.vue";
+
+
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

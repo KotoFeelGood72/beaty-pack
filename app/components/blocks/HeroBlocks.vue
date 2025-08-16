@@ -64,7 +64,10 @@ import "swiper/css/pagination";
   background: #fff !important;
 }
 
-.hero_pagination {
-  max-width: calc(100% - 40px);
+
+@media (max-width: 768px) {
+  .hero_pagination {
+    max-width: calc(100% - 40px);
+  }
 }
 </style>

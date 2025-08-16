@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeroBlocks />
-    <CircleSlider class="mb-20" />
+    <CircleSlider class="lg:mb-20 mb-16" />
     <Transition name="modal">
       <StorieslSliderModal v-if="isOpen" />
     </Transition>
@@ -12,13 +12,13 @@
       buttonText="Отправить запрос"
       :isColor="true"
     />
-    <WhatsSliders :items="cases">
+    <WhatsSliders :items="cases" class="bg-lightGrey">
       <template #card="{ item }">
         <WhatsCard :item="item" />
       </template>
     </WhatsSliders>
     <CountriesBlock />
-    <div class="bg-lightGrey pt-100">
+    <div class="bg-lightGrey lg:pt-100 py-16">
       <HappyBlock />
     </div>
     <WhatsSliders :items="posts" title="Блог" class="blog">

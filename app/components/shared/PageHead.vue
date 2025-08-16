@@ -1,11 +1,11 @@
 <template>
-  <div class="container mb-10 mt-8">
-    <nav class="text-body-4 text-lightGreyBlue mb-5" aria-label="Breadcrumb">
-      <ul class="flex items-center gap-3">
+  <div class="container lg:mb-10 mb-5 mt-8">
+    <nav class="text-body-4 text-lightGreyBlue lg:mb-5 mb-3" aria-label="Breadcrumb">
+      <ul class="flex items-center lg:gap-3 gap-2 font-manrope flex-wrap">
         <li
           v-for="(crumb, idx) in breadcrumbs"
           :key="idx"
-          class="flex items-center gap-3"
+          class="flex items-center lg:gap-3 gap-2"
         >
           <template v-if="crumb.children && crumb.children.length">
             <div class="relative group">
@@ -14,7 +14,7 @@
                 @click="toggleDropdown(idx)"
                 type="button"
               >
-                <span>{{ crumb.label }}</span>
+                <span class="whitespace-nowrap">{{ crumb.label }}</span>
                 <div class="flex items-center justify-center w-4 h-4 -mt-[0.6px]">
                   <IconChevron />
                 </div>
@@ -28,13 +28,13 @@
           </template>
           <template v-else>
             <NuxtLink v-if="crumb.to" :to="crumb.to" class="">{{ crumb.label }}</NuxtLink>
-            <span v-else class="text-dark">{{ crumb.label }}</span>
+            <span v-else class="text-dark whitespace-nowrap">{{ crumb.label }}</span>
           </template>
           <span v-if="idx < breadcrumbs.length - 1" class="">/</span>
         </li>
       </ul>
     </nav>
-    <h1 class="text-headline-1 font-semibold" v-if="title">{{ title }}</h1>
+    <h1 class="lg:text-headline-1 text-headline-6 font-semibold" v-if="title">{{ title }}</h1>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-10">
+  <div class="container lg:py-10 pt-14">
     <div class="circle-slider">
       <Swiper
         :modules="[Pagination]"
