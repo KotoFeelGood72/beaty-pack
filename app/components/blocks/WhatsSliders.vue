@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:bg-lightGrey lg:py-100 pt-[39px] pb-[78px] ">
+  <div class="lg:bg-lightGrey lg:py-100 pt-[39px] pb-[78px] overflow-hidden">
     <div class="container relative">
       <div class="flex justify-between items-center lg:pb-9 lg:mb-9  mb-5 lg:relative">
         <h2 class="lg:text-headline-2 text-headline-6 font-semibold">{{ title }}</h2>
