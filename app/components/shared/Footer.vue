@@ -2,7 +2,7 @@
   <footer class="footer bg-[#21272A] text-white pt-100 pb-6">
     <div class="container">
       <div
-        class="footer-top grid lg:grid-cols-4 grid-cols-1 lg:gap-20 gap-[60px] pb-[60px] border-b border-darkGrey mb-6 "
+        class="footer-top grid lg:grid-cols-4 grid-cols-1 lg:gap-20 gap-[60px] pb-[60px] border-b border-darkGrey mb-6"
       >
         <div>
           <NuxtLink to="/" class="lg:mb-10 mb-6 block max-lg:w-[160px]">
@@ -59,7 +59,9 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom flex items-center justify-between text-body-4 text-grey">
+      <div
+        class="footer-bottom flex items-center justify-between text-body-4 text-grey flex-wrap max-lg:gap-4 max-lg:text-body-4"
+      >
         <p class="opacity-70">© Все права защищены</p>
         <NuxtLink to="/">Политика конфиденциальности</NuxtLink>
         <NuxtLink to="/">Согласие на обработку данных</NuxtLink>

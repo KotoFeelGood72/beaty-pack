@@ -8,23 +8,27 @@
           <NuxtImg src="images/logo.svg" alt="logo" class="w-full h-full" />
         </NuxtLink>
       </div>
-      <Navigation class="max-lg:hidden"/>
+      <Navigation class="max-lg:hidden" />
       <SearchButton @click="openModal('fly')" />
-      <Btn name="Заказать звонок" theme="dark" @click="openModal('callback')" class="max-lg:hidden"/>
+      <Btn
+        name="Заказать звонок"
+        theme="dark"
+        @click="openModal('callback')"
+        class="max-lg:hidden"
+      />
       <ClientOnly>
-      <div class="flex items-center justify-center">
-      
-        <IconBurger v-if="isMobile" />
-      </div>
+        <div class="flex items-center justify-center" @click="openModal('burger')">
+          <IconBurger v-if="isMobile" />
+        </div>
       </ClientOnly>
     </div>
     <Transition
       enter-active-class="transition-all duration-300 ease-out"
-      enter-from-class="opacity-0 transform -translate-y-4"
-      enter-to-class="opacity-100 transform translate-y-0"
+      enter-from-class="opacity-0 transform lg:-translate-y-4"
+      enter-to-class="opacity-100 transform lg:translate-y-0"
       leave-active-class="transition-all duration-200 ease-in"
-      leave-from-class="opacity-100 transform translate-y-0"
-      leave-to-class="opacity-0 transform -translate-y-4"
+      leave-from-class="opacity-100 transform lg:translate-y-0"
+      leave-to-class="opacity-0 transform lg:-translate-y-4"
     >
       <FlySearch v-if="modals.fly" />
     </Transition>

@@ -9,14 +9,14 @@
     >
       <path
         d="M7.92851 7.92842L22.0706 22.0706"
-        stroke="#21272A"
+        stroke="currentColor"
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M22.0706 7.92847L7.92851 22.0706"
-        stroke="#21272A"
+        stroke="currentColor"
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"

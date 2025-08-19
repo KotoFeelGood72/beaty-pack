@@ -16,6 +16,7 @@
       ></div>
     </Transition>
     <CallbackModal v-if="activeModal === 'callback'" />
+    <BurgerModal v-if="activeModal === 'burger'" />
     <Footer />
   </div>
 </template>
@@ -25,6 +26,7 @@ import Header from "~/components/shared/Header.vue";
 import Footer from "~/components/shared/Footer.vue";
 import { useModalStoreRefs, useModalStore } from "@/store/useModalStore";
 import CallbackModal from "@/components/modals/CallbackModal.vue";
+import BurgerModal from "@/components/modals/BurgerModal.vue";
 
 const { bg, modals } = useModalStoreRefs();
 const { closeAllModals } = useModalStore();

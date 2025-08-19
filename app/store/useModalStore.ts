@@ -5,6 +5,7 @@ export const useModalStore = defineStore("modal", {
     modals: {
       fly: false,
       callback: false,
+      burger: false,
     },
     bg: false,
   }),
