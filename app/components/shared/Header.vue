@@ -1,7 +1,7 @@
 <template>
   <header class="fixed top-0 left-0 right-0 z-50">
     <div
-      class="container flex items-center justify-between header-shadow rounded-b-[20px] gap-6 bg-white"
+      class="container flex items-center justify-between header-shadow lg:rounded-b-[20px] rounded-b-[10px] lg:gap-6 gap-4 bg-white"
     >
       <div class="logo flex-grow">
         <NuxtLink to="/" class="flex items-center justify-start p-2 max-w-[154px]">
@@ -10,7 +10,13 @@
       </div>
       <Navigation class="max-lg:hidden"/>
       <SearchButton @click="openModal('fly')" />
-      <Btn name="Заказать звонок" theme="dark" @click="openModal('callback')" />
+      <Btn name="Заказать звонок" theme="dark" @click="openModal('callback')" class="max-lg:hidden"/>
+      <ClientOnly>
+      <div class="flex items-center justify-center">
+      
+        <IconBurger v-if="isMobile" />
+      </div>
+      </ClientOnly>
     </div>
     <Transition
       enter-active-class="transition-all duration-300 ease-out"
@@ -31,9 +37,12 @@ import SearchButton from "@/components/buttons/SearchButton.vue";
 import Btn from "@/components/buttons/Btn.vue";
 import FlySearch from "@/components/shared/FlySearch.vue";
 import { useModalStore, useModalStoreRefs } from "@/store/useModalStore";
-
+import { useMediaQuery } from "@vueuse/core";
+import IconBurger from "@/components/icons/icon-burger.vue";
 const { modals } = useModalStoreRefs();
 const { openModal } = useModalStore();
+
+const isMobile = useMediaQuery("(max-width: 1024px)");
 </script>
 
 <style scoped>

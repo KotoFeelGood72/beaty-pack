@@ -1,7 +1,7 @@
 <template>
   <div>
     <IconSearch
-      class="w-[26px] h-[26px] flex items-center justify-center cursor-pointer"
+      class="lg:w-[26px] lg:h-[26px] w-[35px] h-[35px] flex items-center justify-center cursor-pointer"
     />
   </div>
 </template>
