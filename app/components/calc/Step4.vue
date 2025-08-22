@@ -35,14 +35,14 @@
       </div>
 
       <!-- Кнопка расчета -->
-      <div class="pt-4">
+      <!-- <div class="pt-4">
         <button
           @click="calculateOrder"
           class="bg-amber-700 hover:bg-amber-800 text-white font-medium py-3 px-6 rounded-md transition-colors duration-200"
         >
           Рассчитать
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -70,6 +70,7 @@ const deliveryOptions = [
 ];
 
 const calculateOrder = () => {
+  console.log('Good calc');
   console.log("Расчет заказа:", {
     packaging: packaging.value,
     delivery: delivery.value,

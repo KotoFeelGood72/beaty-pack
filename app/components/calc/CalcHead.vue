@@ -1,12 +1,10 @@
 <template>
-  <div class="calc-head">
+  <div class="calc-head flex items-center justify-between">
     <div>
-      <h3>{{ title }}</h3>
+      <h3 class="text-headline-4 font-semibold">{{ title }}</h3>
     </div>
-    <div>
-      <div class="step-info">
-        <p class="step-text">Шаг {{ step }} из 4</p>
-      </div>
+    <div class="flex items-center gap-2 flex-col">
+        <p class="step-text text-lightGreyBlue text-headline-5 font-semibold">Шаг {{ step }} из 4</p>
       <div class="step-progress">
         <div
           class="step-progress-fill"
@@ -29,33 +27,16 @@ defineProps<{
   margin-bottom: 1.5rem;
 }
 
-.calc-head h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 1rem;
-}
-
-.step-info {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.step-text {
-  color: #374151;
-  font-weight: 500;
-}
-
 .step-progress {
   width: 100%;
   background-color: #e5e7eb;
   border-radius: 9999px;
-  height: 0.5rem;
+  height: 0.3rem;
 }
 
 .step-progress-fill {
   background-color: #84cc16;
-  height: 0.5rem;
+  height: 0.3rem;
   border-radius: 9999px;
   transition: width 0.3s ease-in-out;
 }

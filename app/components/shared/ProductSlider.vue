@@ -32,32 +32,63 @@
         title="   Бумажный пакет Великан v2"
       />
     </div>
-    <div class="flex flex-wrap gap-5 ">
-      <div class="rounded-lg overflow-hidden flex-grow h-[460px]">
-        <NuxtImg
-            v-if="images && images.length > 0 && images[0]"
-            :src="images[0].src"
-            :alt="images[0].alt"
-            class="w-full h-full object-cover "
-            loading="lazy"
-          />
+    <div class="flex gap-5 max-lg:flex-wrap h-[460px]">
+      <div class="rounded-lg overflow-hidden flex-grow ">
+        <Swiper :modules="[Thumbs]" :slides-per-view="1" :space-between="20" :thumbs="{ swiper: thumbsSwiper }">
+          <SwiperSlide v-for="value in images" :key="value.alt">
+            <NuxtImg
+              :src="value.src"
+              :alt="value.alt"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </SwiperSlide>
+        </Swiper>
       </div>
 
       <div class="space-y-5">
-          <div v-for="(image, index) in images.slice(1)" :key="index" class="rounded-lg overflow-hidden w-[140px] h-[140px]">
-            <NuxtImg :src="image.src" :alt="image.alt" class="w-full h-full object-cover" loading="lazy" />
-          </div>
-        </div>
+      <Swiper
+        :modules="[FreeMode, Thumbs]"
+        :slides-per-view="3"
+        :space-between="20"
+        direction="vertical"
+        :free-mode="true"
+        :watch-slides-progress="true"
+        class="h-full w-[140px] "
+        @swiper="onThumbsSwiperReady"
+      >
+        <SwiperSlide v-for="value in images" :key="value.alt">
+          <NuxtImg
+              :src="value.src"
+              :alt="value.alt"
+              class="w-full h-full object-cover rounded-lg overflow-hidden"
+              loading="lazy"
+            />
+        </SwiperSlide>
+      </Swiper>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/free-mode";
+import "swiper/css/thumbs";
+import { FreeMode, Thumbs } from "swiper/modules";
 import PageHead from "./PageHead.vue";
 
 const props = defineProps<{
   images: { src: string; alt: string }[];
 }>();
+
+const thumbsSwiper = ref<any | null>(null);
+const onThumbsSwiperReady = (swiper: any) => {
+  thumbsSwiper.value = swiper;
+};
 </script>
 
 <style scoped></style>

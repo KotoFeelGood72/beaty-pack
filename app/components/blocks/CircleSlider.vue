@@ -33,11 +33,11 @@
 import { stories } from "~/data/Stories";
 import CircleCard from "@/components/cards/CircleCard.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { useStoriesStore } from "~/store/useStoriesStore";
 import { computed } from "vue";
-import "swiper/css";
-import "swiper/css/pagination";
 
 const { setCurrentStory } = useStoriesStore();
 

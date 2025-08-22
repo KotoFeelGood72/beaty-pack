@@ -28,7 +28,8 @@
   "tailwindCSS.lint.invalidScreen": "error",
   "tailwindCSS.lint.invalidTailwindDirective": "error",
   "tailwindCSS.lint.invalidVariant": "error",
-  "tailwindCSS.lint.recommendedVariantOrder": "warning"
+  "tailwindCSS.lint.recommendedVariantOrder": "warning",
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false
 }
 
 

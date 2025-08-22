@@ -1,10 +1,11 @@
 <template>
   <div class="calc-input-container">
+  <label  class=" font-manrope font-semibold mb-3 block">{{ label }}</label>
     <input
       type="text"
       v-model="localValue"
       :placeholder="placeholder"
-      class="calc-input"
+      class="border border-grey p-4 rounded-lg max-h-[54px] text-lightGreyBlue font-manrope "
       @input="handleInput"
     />
   </div>
@@ -17,6 +18,7 @@ const props = defineProps<{
   placeholder?: string;
   modelValue: any;
   phoneMask?: boolean;
+  label?: string;
 }>();
 
 const emit = defineEmits(["update:modelValue"]);
@@ -73,29 +75,5 @@ const handleInput = (event: Event) => {
 </script>
 
 <style scoped>
-.calc-input-container {
-  position: relative;
-  height: 60px;
-}
 
-.calc-input {
-  width: 100%;
-  height: 100%;
-  padding: 1.25rem;
-  border-radius: 0.5rem;
-  color: #6b7280;
-  border: 1px solid #d1d5db;
-  background-color: white;
-  font-size: 0.875rem;
-  transition: border-color 0.2s ease;
-}
-
-.calc-input:focus {
-  outline: none;
-  border-color: #84cc16;
-}
-
-.calc-input::placeholder {
-  color: #9ca3af;
-}
 </style>

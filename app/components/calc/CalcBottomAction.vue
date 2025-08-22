@@ -1,29 +1,18 @@
 <template>
-    <div class="flex justify-between items-center pt-6">
+    <div class="flex items-center pt-6 gap-4">
         <Btn 
             name="Назад" 
             :disabled="!canGoBack"
             @click="handlePrev"
-            class="bg-gray-500 hover:bg-gray-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            theme="light"
+            class="disabled:cursor-not-allowed "
         />
-        
-        <div class="flex items-center space-x-4">
-            <!-- Индикатор прогресса -->
-            <div class="flex space-x-2">
-                <div 
-                    v-for="step in totalSteps" 
-                    :key="step"
-                    class="w-3 h-3 rounded-full transition-colors duration-200"
-                    :class="getStepClass(step)"
-                ></div>
-            </div>
-        </div>
         
         <Btn 
             :name="isLastStep ? 'Рассчитать' : 'Дальше'"
             :disabled="!canGoNext && !isLastStep"
             @click="handleNext"
-            class="bg-amber-700 hover:bg-amber-800 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            class=""
         />
     </div>
 </template>
@@ -65,6 +54,8 @@ const handlePrev = () => {
 const handleNext = () => {
     if (props.canGoNext || props.isLastStep) {
         emit('next');
+    } else {
+        console.log('Bad calc');
     }
 };
 
