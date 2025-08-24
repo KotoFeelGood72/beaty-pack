@@ -1,11 +1,11 @@
 <template>
   <div class="calc-input-container">
-  <label  class=" font-manrope font-semibold mb-3 block">{{ label }}</label>
+    <label class="font-manrope lg:font-semibold mb-3 block">{{ label }}</label>
     <input
       type="text"
       v-model="localValue"
       :placeholder="placeholder"
-      class="border border-grey p-4 rounded-lg max-h-[54px] text-lightGreyBlue font-manrope "
+      class="border border-grey p-4 rounded-lg lg:max-h-[54px] text-lightGreyBlue font-manrope max-h-[42px] max-lg:text-body-4"
       @input="handleInput"
     />
   </div>
@@ -74,6 +74,4 @@ const handleInput = (event: Event) => {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,7 +1,7 @@
 <template>
   <div class="calc-step w-full flex-grow">
     <CalcHead title="Общая информация" :step="1" />
-    <div class="flex items-center gap-10">
+    <div class="flex items-center lg:gap-10 gap-4 max-lg:flex-col max-lg:items-start">
       <CalcInput modelValue="100 шт." label="Тираж" />
       <CalcSelect
         v-model="selectedSize"

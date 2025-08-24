@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <component 
-      :is="stepComponent" 
-      v-if="isVisible" 
-      :class="{ hidden: !isCurrent }" 
-    />
+  <div
+    class="border border-grey lg:p-8 p-4 rounded-2xl"
+    v-if="isVisible"
+    :class="{ hidden: !isCurrent }"
+  >
+    <component :is="stepComponent" />
     <CalcBottomAction
       v-if="isCurrent"
       :can-go-back="canGoBack"

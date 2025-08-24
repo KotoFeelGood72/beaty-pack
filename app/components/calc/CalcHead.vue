@@ -1,15 +1,16 @@
 <template>
   <div class="calc-head flex items-center justify-between">
     <div>
-      <h3 class="text-headline-4 font-semibold">{{ title }}</h3>
+      <h3 class="lg:text-headline-4 text-body-2 font-semibold">{{ title }}</h3>
     </div>
     <div class="flex items-center gap-2 flex-col">
-        <p class="step-text text-lightGreyBlue text-headline-5 font-semibold">Шаг {{ step }} из 4</p>
+      <p
+        class="step-text text-lightGreyBlue lg:text-headline-5 text-body-4 font-semibold"
+      >
+        Шаг {{ step }} из 4
+      </p>
       <div class="step-progress">
-        <div
-          class="step-progress-fill"
-          :style="{ width: `${(step / 4) * 100}%` }"
-        ></div>
+        <div class="step-progress-fill" :style="{ width: `${(step / 4) * 100}%` }"></div>
       </div>
     </div>
   </div>

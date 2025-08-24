@@ -1,6 +1,6 @@
 <template>
   <div
-    class="py-4 px-[28px] lg:rounded-xl rounded-lg cursor-pointer transition-all duration-200 hover:opacity-90 text-center text-body-1 font-normal font-manrope"
+    class="py-4 px-[28px] lg:rounded-xl rounded-lg cursor-pointer transition-all duration-200 hover:opacity-90 text-center lg:text-body-1 text-body-2 font-normal font-manrope"
     :class="themeClasses"
   >
     {{ name }}

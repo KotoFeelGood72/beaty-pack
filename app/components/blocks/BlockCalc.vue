@@ -1,10 +1,10 @@
 <template>
-  <div class="calculator-container container">
-    <h3 class="text-headline-2 font-semibold mb-10">
+  <div class="calculator-container container py-60">
+    <h3 class="lg:text-headline-2 text-headline-6 font-semibold lg:mb-10 mb-6">
       Рассчитайте стоимость вашего заказа
     </h3>
-    <div class="flex gap-10">
-      <div class="flex-grow">
+    <div class="flex gap-10 flex-wrap">
+      <div class="flex-grow max-lg:order-2">
         <CalcStep
           v-for="stepNumber in 4"
           :key="stepNumber"
@@ -22,16 +22,18 @@
           @prev="handlePrev"
         />
       </div>
-      <div class="max-w-[480px] w-full bg-lightGrey p-8 rounded-2xl">
-        <h3 class="text-headline-4 mb-6 font-semibold">Расчет стоимости</h3>
-        <div class="flex gap-24 mb-5">
-          <p class="text-lightGreyBlue font-light">... шт.</p>
-          <p class="font-medium">... руб.</p>
+      <div class="max-lg:order-1">
+        <div class="max-w-[480px] w-full bg-lightGrey p-8 rounded-2xl">
+          <h3 class="text-headline-4 mb-6 font-semibold">Расчет стоимости</h3>
+          <div class="flex gap-24 mb-5">
+            <p class="text-lightGreyBlue font-light">... шт.</p>
+            <p class="font-medium">... руб.</p>
+          </div>
+          <div class="text-lightGreyBlue font-light font-manrope text-body-4 mb-6">
+            В процессе согласования макета, менеджер предоставит вам окончательную смету
+          </div>
+          <Btn name="Оставить запрос" class="max-w-[201px]" />
         </div>
-        <div class="text-lightGreyBlue font-light font-manrope text-body-4 mb-6">
-          В процессе согласования макета, менеджер предоставит вам окончательную смету
-        </div>
-        <Btn name="Оставить запрос" class="max-w-[201px]" />
       </div>
     </div>
   </div>

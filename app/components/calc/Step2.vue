@@ -1,53 +1,73 @@
 <template>
   <div class="calc-step">
     <CalcHead title="Основа" :step="2" />
-    <div class="step-content">
-      <CalcSelect
-        v-model="lamination"
-        :options="laminationOptions"
-        label="Ламинация"
-        placeholder="Выберите ламинацию"
-      />
-      <CalcSelect
-        v-model="lacquer"
-        :options="lacquerOptions"
-        label="Лак"
-        placeholder="Выберите лак"
-      />
-      <CalcRadioGroup v-model="embossing" :options="embossingOptions" label="Тиснение" />
-      <CalcSelect
-        v-model="color"
-        :options="colorOptions"
-        label="Цветность"
-        placeholder="Выберите цветность"
-      />
-      <div class="grid-inputs">
-        <CalcInput v-model="front" type="number" label="Лицо" placeholder="0" />
-        <CalcInput v-model="back" type="number" label="Оборот" placeholder="0" />
-      </div>
-      <CalcSelect
-        v-model="material"
-        :options="materialOptions"
-        label="Материал"
-        placeholder="Выберите материал"
-      />
-      <CalcSelect
-        v-model="paper"
-        :options="paperOptions"
-        label="Бумага"
-        placeholder="Выберите бумагу"
-      />
-      <div class="file-upload-section">
-        <label class="file-upload-label">
-          Здесь вы можете прикрепить макет или логотип для размещения
-        </label>
-        <CalcFileUpload
-          label="Добавить файл"
-          accept=".pdf,.ai,.eps,.cdr,.jpg,.jpeg,.png"
-          @file-selected="handleFileSelected"
-          @file-removed="handleFileRemoved"
+    <div class="flex flex-col lg:gap-8 gap-4">
+      <div class="flex items-center lg:gap-10 max-lg:flex-col max-lg:items-start gap-4">
+        <CalcSelect
+          v-model="lamination"
+          :options="laminationOptions"
+          label="Ламинация"
+          placeholder="Выберите ламинацию"
+          class="max-lg:w-full"
+        />
+        <CalcSelect
+          v-model="lacquer"
+          :options="lacquerOptions"
+          label="Лак"
+          placeholder="Выберите лак"
+          class="max-lg:w-full"
+        />
+        <CalcRadioGroup
+          v-model="embossing"
+          :options="embossingOptions"
+          label="Тиснение"
         />
       </div>
+      <div class="flex items-center lg:gap-10 gap-4 max-lg:flex-col max-lg:items-start">
+        <CalcSelect
+          v-model="color"
+          :options="colorOptions"
+          label="Цветность"
+          placeholder="Выберите цветность"
+          class="max-lg:w-full"
+        />
+        <div class="flex items-center gap-4">
+          <CalcSelect
+            v-model="front"
+            :options="frontOptions"
+            label="Лицо"
+            placeholder="Выберите лицо"
+          />
+          <CalcSelect
+            v-model="back"
+            :options="backOptions"
+            label="Оборот"
+            placeholder="Выберите оборот"
+          />
+        </div>
+      </div>
+      <div class="flex items-center lg:gap-10 gap-4 max-lg:flex-col max-lg:items-start">
+        <CalcSelect
+          v-model="material"
+          :options="materialOptions"
+          label="Материал"
+          placeholder="Выберите материал"
+          class="max-lg:w-full"
+        />
+        <CalcSelect
+          v-model="paper"
+          :options="paperOptions"
+          label="Бумага"
+          placeholder="Выберите бумагу"
+          class="max-lg:w-full"
+        />
+      </div>
+      <CalcFileUpload
+        label="Добавить файл"
+        accept=".pdf,.ai,.eps,.cdr,.jpg,.jpeg,.png"
+        @file-selected="handleFileSelected"
+        @file-removed="handleFileRemoved"
+      />
     </div>
   </div>
 </template>
@@ -63,8 +83,8 @@ const lamination = ref("matte");
 const lacquer = ref("uv");
 const embossing = ref("yes");
 const color = ref("cmyk");
-const front = ref(0);
-const back = ref(0);
+const front = ref(1);
+const back = ref(1);
 const material = ref("paper");
 const paper = ref("coated-glossy-170");
 
@@ -89,6 +109,25 @@ const colorOptions = [
   { value: "cmyk", label: "CMYK" },
   { value: "pantone", label: "Pantone" },
   { value: "black-white", label: "Ч/Б" },
+];
+
+const frontOptions = [
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
+  { value: 3, label: "3" },
+  { value: 4, label: "4" },
+  { value: 5, label: "5" },
+  { value: 6, label: "6" },
+];
+
+const backOptions = [
+  { value: 0, label: "0" },
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
+  { value: 3, label: "3" },
+  { value: 4, label: "4" },
+  { value: 5, label: "5" },
+  { value: 6, label: "6" },
 ];
 
 const materialOptions = [
@@ -118,24 +157,5 @@ const handleFileRemoved = () => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.grid-inputs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.file-upload-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.file-upload-label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
 }
 </style>

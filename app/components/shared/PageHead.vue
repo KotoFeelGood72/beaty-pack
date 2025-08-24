@@ -1,5 +1,5 @@
 <template>
-  <div class="container lg:mb-10 mb-5 mt-8">
+  <div class="container lg:mb-10 mb-5 mt-8" :class="classNames">
     <nav class="text-body-4 text-lightGreyBlue lg:mb-5 mb-3" aria-label="Breadcrumb">
       <ul class="flex items-center lg:gap-3 gap-2 font-manrope flex-wrap">
         <li
@@ -34,7 +34,9 @@
         </li>
       </ul>
     </nav>
-    <h1 class="lg:text-headline-1 text-headline-6 font-semibold" v-if="title">{{ title }}</h1>
+    <h1 class="lg:text-headline-1 text-headline-6 font-semibold" v-if="title">
+      {{ title }}
+    </h1>
   </div>
 </template>
 
@@ -43,6 +45,7 @@ import IconChevron from "@/components/icons/icon-chevron.vue";
 import Dropdown from "@/components/shared/Dropdown.vue";
 
 defineProps<{
+  classNames?: string;
   breadcrumbs: Array<{
     label: string;
     to?: string;

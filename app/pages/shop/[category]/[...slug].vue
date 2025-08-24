@@ -1,14 +1,22 @@
 <template>
   <div class="">
-    <div class="container flex gap-10 mb-100">
+    <div
+      class="container flex gap-10 mb-100 flex-col lg:flex-row max-lg:px-0 overflow-x-hidden"
+    >
       <ProductSlider :images="responsiveProductImages" />
       <ProductInfo :info="info" :prices="prices" :sizes="sizes" :tirages="tirages" />
     </div>
-    <div class="container mb-10">
-      <div class="flex justify-between items-center gap-12">
-        <div v-for="value in services" :key="value" class="flex items-center gap-4 text-headline-5 font-onest ">
+    <div class="container mb-10 overflow-auto">
+      <div
+        class="flex justify-between items-center gap-12 overflow-x-auto hide-scrollbar"
+      >
+        <div
+          v-for="value in services"
+          :key="value"
+          class="flex items-center gap-4 text-headline-5 font-onest max-lg:whitespace-nowrap"
+        >
           <IconsFillCheck />
-          <p>{{ value }}</p>
+          <p v-html="value"></p>
         </div>
       </div>
     </div>
@@ -25,6 +33,9 @@
       :isColor="true"
     />
     <SeoBlock />
+    <Transition name="fade">
+      <ModalOrder v-if="isActiveModal" />
+    </Transition>
   </div>
 </template>
 
@@ -41,38 +52,43 @@ import ProductSlider from "~/components/shared/ProductSlider.vue";
 import ProductInfo from "~/components/shared/ProductInfo.vue";
 import BlockCalc from "~/components/blocks/BlockCalc.vue";
 import { useResponsiveImage } from "~/utils/useResponsiveImage";
+import ModalOrder from "~/components/modals/ModalOrder.vue";
+import { useModalStoreRefs } from "@/store/useModalStore";
 
 const services = [
-  "Бесплатный макет",
-  "100% гарантия качества",
-  "Бесплатная доставка от 30 000 руб.",
-  "Работаем по ЭДО",
+  "Бесплатный<br>макет",
+  "100% гарантия<br>качества",
+  "Бесплатная доставка<br>от 30 000 руб.",
+  "Работаем<br>по ЭДО",
 ];
 
 // Используем утилиту для адаптивных изображений
 const { getResponsiveImages } = useResponsiveImage();
+const { modals } = useModalStoreRefs();
+
+const isActiveModal = computed(() => modals.value.order);
 
 // Массив изображений с адаптивными версиями
 const productImages = [
   {
     mobile: "/images/product-view-1-mobile.png",
     desktop: "/images/product-view-1.png",
-    alt: "Product View 1"
+    alt: "Product View 1",
   },
   {
-    mobile: "/images/product-view-2-mobile.png", 
+    mobile: "/images/product-view-2-mobile.png",
     desktop: "/images/product-view-2.png",
-    alt: "Product View 2"
+    alt: "Product View 2",
   },
   {
     mobile: "/images/product-view-3-mobile.png",
-    desktop: "/images/product-view-2.png", 
-    alt: "Product View 3"
+    desktop: "/images/product-view-2.png",
+    alt: "Product View 3",
   },
   {
     mobile: "/images/product-view-4-mobile.png",
     desktop: "/images/product-view-2.png",
-    alt: "Product View 4"
+    alt: "Product View 4",
   },
 ];
 
@@ -86,15 +102,23 @@ const info = {
   short: [
     { label: "Материал", value: "Пластик" },
     { label: "Размер", value: "10x15 см" },
-  ]
+  ],
 };
 
-const tirages = ['от 100 шт.', 'от 1000 шт.', 'от 2000 шт.']
+const tirages = ["от 100 шт.", "от 1000 шт.", "от 2000 шт."];
 
-const sizes = ['90 руб.', '40 руб.', '28 руб.']
+const sizes = ["90 руб.", "40 руб.", "28 руб."];
 
-const prices = ['9 000 руб.', '40 000 руб.', '56 000 руб.']
-
+const prices = ["9 000 руб.", "40 000 руб.", "56 000 руб."];
 </script>
 
-<style scoped></style>
+<style scoped>
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+</style>

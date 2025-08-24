@@ -6,6 +6,7 @@ export const useModalStore = defineStore("modal", {
       fly: false,
       callback: false,
       burger: false,
+      order: false,
     },
     bg: false,
   }),

@@ -1,43 +1,51 @@
 <template>
   <div class="calc-step">
     <CalcHead title="Фурнитура" :step="3" />
-    <div class="space-y-6">
-      <!-- Первый ряд -->
-      <div class="grid grid-cols-3 gap-4">
+    <div class="flex flex-col lg:gap-8 gap-4">
+      <div class="flex lg:gap-10 gap-4 max-lg:flex-col max-lg:items-start">
         <CalcSelect
           v-model="handleMaterial"
           :options="handleMaterialOptions"
           label="Материал ручек"
           placeholder="Выберите материал"
+          class="max-lg:w-full"
         />
         <CalcSelect
           v-model="cord"
           :options="cordOptions"
           label="Шнур"
           placeholder="Выберите шнур"
+          class="max-lg:w-full"
         />
         <div class="space-y-2">
           <CalcRadioGroup
             v-model="handleReinforcement"
             :options="reinforcementOptions"
             label="Укрепление ручек*"
+            class="max-lg:max-w-[121px]"
           />
-          <p class="text-xs text-gray-500">*Обязательно для вклейки ленты</p>
+          <p class="text-body-5 font-manrope text-lightGreyBlue lg:max-w-[143px]">
+            *Обязательно для вклейки ленты
+          </p>
         </div>
       </div>
 
       <!-- Второй ряд -->
-      <div class="grid grid-cols-2 gap-4">
-        <CalcSelect
-          v-model="fastening"
-          :options="fasteningOptions"
-          label="Крепление"
-          placeholder="Выберите крепление"
-        />
+      <div class="flex lg:gap-10 gap-4 max-lg:flex-col max-lg:items-start">
+        <div class="max-w-[143px] w-full">
+          <CalcSelect
+            v-model="fastening"
+            :options="fasteningOptions"
+            label="Крепление"
+            placeholder="Выберите крепление"
+            class="max-lg:w-full"
+          />
+        </div>
         <CalcRadioGroup
           v-model="eyelets"
           :options="eyeletsOptions"
           label="Люверсы"
+          class="max-lg:max-w-[121px]"
         />
       </div>
     </div>
