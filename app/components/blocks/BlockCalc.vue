@@ -1,5 +1,5 @@
 <template>
-  <div class="calculator-container container py-60">
+  <div class="calculator-container container lg:py-60">
     <h3 class="lg:text-headline-2 text-headline-6 font-semibold lg:mb-10 mb-6">
       Рассчитайте стоимость вашего заказа
     </h3>
